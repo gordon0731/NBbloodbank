@@ -257,19 +257,19 @@ public class Registration extends javax.swing.JFrame {
         blood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB", "O" }));
 
         edic.setForeground(new java.awt.Color(255, 0, 0));
-        edic.setText("NRIC field cannot be blank!!");
+        edic.setText("NRIC");
 
         edname1.setForeground(new java.awt.Color(255, 0, 0));
         edname1.setText("Donor Name field cannot be blank!!!");
 
         edcontact.setForeground(new java.awt.Color(255, 0, 0));
-        edcontact.setText("Contact Number field cannot be blank!!");
+        edcontact.setText("Contact Number");
 
         edaddress.setForeground(new java.awt.Color(255, 0, 0));
         edaddress.setText("Address field cannot be blank!!");
 
         edemail.setForeground(new java.awt.Color(255, 0, 0));
-        edemail.setText("Email Address field cannot be blank!!");
+        edemail.setText("Email Address");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -309,7 +309,7 @@ public class Registration extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(edcontact))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,14 +322,14 @@ public class Registration extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
                                         .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(edemail))))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                     .addContainerGap(361, Short.MAX_VALUE)
@@ -453,14 +453,16 @@ public class Registration extends javax.swing.JFrame {
             edname1.setVisible(false);
         }
         if(dic.equals("")){
+            edic.setText("NRIC field cannot be blank!!");
             edic.setVisible(true);
             check=false;
         }else if(dic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
             check=true;
             edic.setVisible(false);
         }else if(!dic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
-            JOptionPane.showMessageDialog(null, "Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx","ERROR",JOptionPane.ERROR_MESSAGE);
-            edic.setVisible(false);
+            //JOptionPane.showMessageDialog(null, "Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx","ERROR",JOptionPane.ERROR_MESSAGE);
+            edic.setText("Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx");
+            edic.setVisible(true);
             check=false;
         }
         if(daddr.equals("")){
@@ -472,6 +474,7 @@ public class Registration extends javax.swing.JFrame {
              check=true;
          }
         if(dcontact.equals("")){
+            edcontact.setText("Contact Number field cannot be blank!!");
             edcontact.setVisible(true);
             check=false;
             
@@ -479,19 +482,23 @@ public class Registration extends javax.swing.JFrame {
             edcontact.setVisible(false);
             check=true;
         }else if(!dcontact.matches("([0]){1}([1]){1}([0-9]){1}-([0-9]){7}")){
-            JOptionPane.showMessageDialog(null, "Invalid Contact Number format enter!!\nExample:012-3456789","ERROR",JOptionPane.ERROR_MESSAGE);
-            edcontact.setVisible(false);
+            //JOptionPane.showMessageDialog(null, "Invalid Contact Number format enter!!\nExample:012-3456789","ERROR",JOptionPane.ERROR_MESSAGE);
+            edcontact.setText("Invalid Contact Number format enter!!\nExample:012-3456789");
+            edcontact.setVisible(true);
             check=false;
         }
         if(demail.equals("")){
+            edemail.setText("Email Address field cannot be blank!!");
             edemail.setVisible(true);
+            check=false;
             
         }else if(demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
             edemail.setVisible(false);
                 check=true;
         }else if(!demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
-             JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
-             edemail.setVisible(false);
+             //JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
+             edemail.setText("Invalid email format enter!!\nExample:abc123@gmail.com");
+             edemail.setVisible(true);
              check=false;
         }
         return check;
