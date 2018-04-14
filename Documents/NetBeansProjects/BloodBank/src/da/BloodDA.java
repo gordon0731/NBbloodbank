@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class BloodDA {
-    private String host = "jdbc:derby://localhost:1527/FYP1";
+    private String host = "jdbc:derby://localhost:1527/BloodBank";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "BloodBank";

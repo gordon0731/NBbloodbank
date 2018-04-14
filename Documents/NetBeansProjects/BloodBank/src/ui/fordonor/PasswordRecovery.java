@@ -8,6 +8,7 @@ package ui.fordonor;
 import javax.swing.JOptionPane;
 import domain.RegisterDO;
 import controller.MaintainRegister;
+import ui.*;
 
 /**
  *

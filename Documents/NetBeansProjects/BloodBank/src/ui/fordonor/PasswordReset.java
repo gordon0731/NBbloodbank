@@ -9,6 +9,7 @@ import domain.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import controller.MaintainRegister;
+import ui.*;
 
 /**
  *

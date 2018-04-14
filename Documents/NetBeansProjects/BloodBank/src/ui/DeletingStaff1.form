@@ -49,28 +49,25 @@
                               <Component id="jLabel10" alignment="0" pref="80" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel19" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="jLabel12" min="-2" pref="76" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel12" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtfid" max="32767" attributes="0"/>
-                          <Component id="jtfname" max="32767" attributes="0"/>
-                          <Component id="jtfic" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Component id="jtfno" max="32767" attributes="0"/>
-                          <Component id="jtfemail" max="32767" attributes="0"/>
-                          <Component id="jtfposition" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jtfemail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfno" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jtfic" alignment="0" pref="129" max="32767" attributes="0"/>
+                              <Component id="jtfname" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jtfgender" max="32767" attributes="0"/>
                                   <Component id="jtfage" pref="100" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jtfid" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane1" alignment="0" pref="164" max="32767" attributes="0"/>
+                          <Component id="jtfposition" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -226,7 +223,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-compose-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Edit_File_26px_2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Updating"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -272,7 +269,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-eye-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Eye_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Retrieving"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -318,7 +315,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-plus-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Plus_26px_1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Adding"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -367,7 +364,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-cancel-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Delete_File_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Deleting"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>

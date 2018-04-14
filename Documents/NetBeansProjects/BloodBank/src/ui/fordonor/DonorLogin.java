@@ -14,6 +14,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import da.*;
 import controller.*;
+import ui.*;
 public class DonorLogin extends javax.swing.JFrame {
 
     /**

@@ -133,7 +133,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-plus-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Plus_26px_1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Adding"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -179,7 +179,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-eye-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Eye_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Retrieving"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -225,7 +225,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-compose-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Edit_File_26px_2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Updating"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -271,7 +271,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-cancel-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Delete_File_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Deleting"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -362,10 +362,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" pref="85" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" pref="85" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" pref="85" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -455,15 +457,15 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value=" Blood ID"/>
+            <Property name="text" type="java.lang.String" value="Blood ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value=" Blood Type"/>
+            <Property name="text" type="java.lang.String" value="Blood Type"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -471,7 +473,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value=" Quantity (ml)"/>
+            <Property name="text" type="java.lang.String" value="Quantity (ml)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfid">

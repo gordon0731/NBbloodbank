@@ -29,15 +29,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel13" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace pref="80" max="32767" attributes="0"/>
-                      <Component id="jTextField6" min="-2" pref="405" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel13" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jTextField6" min="-2" pref="258" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -52,7 +56,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel13" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="jTextField6" alignment="3" pref="31" max="32767" attributes="0"/>
+                  <Component id="jTextField6" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -148,7 +152,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-cancel-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Delete_File_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Deleting"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -194,7 +198,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-plus-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Plus_26px_1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Adding"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -240,7 +244,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-eye-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Eye_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Retrieving"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -286,7 +290,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-compose-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Edit_File_26px_2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Updating"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -315,7 +319,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="369" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="144" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

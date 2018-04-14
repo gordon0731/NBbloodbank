@@ -27,48 +27,69 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="130" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel11" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel12" max="32767" attributes="0"/>
-                          <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jtfic" alignment="1" pref="415" max="32767" attributes="0"/>
-                          <Component id="jtfname" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtfid" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfno" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtfemail" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtfposition" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfseca" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfsecq" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jtfgender" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                  <Component id="jtfage" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jtfid" min="-2" pref="178" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jtfpassword" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtfage" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="jtfgender" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Component id="jtfic" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Component id="jtfname" min="-2" pref="178" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel17" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" min="-2" pref="91" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel12" min="-2" pref="66" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" min="-2" pref="81" max="-2" attributes="0"/>
+                                          <Component id="jLabel11" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jLabel6" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" pref="108" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtfno" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="230" max="32767" attributes="0"/>
+                                  <Component id="jtfemail" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfposition" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfpassword" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfsecq" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfseca" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -84,17 +105,17 @@
                   <Component id="jLabel5" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jtfid" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel6" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="jtfname" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jtfic" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfname" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel7" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jtfic" alignment="3" pref="23" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jtfgender" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -109,10 +130,10 @@
                   <Component id="jScrollPane1" min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel11" min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jtfno" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel11" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jtfno" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -120,9 +141,9 @@
                   <Component id="jLabel12" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel15" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="jtfposition" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel15" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jtfposition" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -139,7 +160,7 @@
                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfseca" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -236,7 +257,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-compose-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Edit_File_26px_2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Updating"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -282,7 +303,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-eye-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Eye_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Retrieving"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -331,7 +352,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-cancel-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Delete_File_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Deleting"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -377,7 +398,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-plus-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Plus_26px_1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Adding"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -507,6 +528,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfname">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfnameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfic">
     </Component>

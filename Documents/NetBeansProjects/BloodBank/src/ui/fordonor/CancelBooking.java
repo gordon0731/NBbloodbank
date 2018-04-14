@@ -11,6 +11,7 @@ import domain.Booking;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import ui.*;
 /**
  *
  * @author LO

@@ -3,31 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.fordonor;
+package ui;
 
 import javax.swing.JOptionPane;
-import ui.*;
 
 /**
  *
  * @author User
  */
 
-public class HomePage extends javax.swing.JFrame {
+public class HRManagerHome extends javax.swing.JFrame {
 
     /**
      * Creates new form Index
      */
-    private String donorid;
-    public HomePage() {
-        initComponents();
-        new HomePage(donorid);
-    }
-    public HomePage(String donorid) {
-        initComponents();
-        this.donorid=donorid;
-    }
+    private String id;
     
+  
+    public HRManagerHome(String id) {
+        initComponents();
+        this.id=id;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +36,7 @@ public class HomePage extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         exit = new javax.swing.JMenuItem();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -59,13 +56,15 @@ public class HomePage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        profile = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        booking = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -85,6 +84,8 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         jPopupMenu1.add(exit);
+
+        jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,12 +230,12 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Male_User_35px.png"))); // NOI18N
-        profile.setComponentPopupMenu(jPopupMenu1);
-        profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Male_User_35px.png"))); // NOI18N
+        jLabel13.setComponentPopupMenu(jPopupMenu1);
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileMouseClicked(evt);
+                jLabel13MouseClicked(evt);
             }
         });
 
@@ -242,17 +243,12 @@ public class HomePage extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Password Reset");
 
-        booking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Reserve_35px_1.png"))); // NOI18N
-        booking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        booking.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookingMouseClicked(evt);
-            }
-        });
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Customer_35px.png"))); // NOI18N
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Booking");
+        jLabel16.setText("View Donor");
 
         jLabel17.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,12 +261,21 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Notification_35px.png"))); // NOI18N
         jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Notification");
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Maintain Staff");
+
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Staff_35px_1.png"))); // NOI18N
+        jLabel40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -282,22 +287,28 @@ public class HomePage extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(175, 175, 175)
-                                        .addComponent(jLabel37))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(profile)
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jLabel12)))
-                                .addGap(45, 45, 45)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(booking)))
+                                .addGap(175, 175, 175)
+                                .addComponent(jLabel37))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel12))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel14))))
+                                .addComponent(jLabel14)))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel38)
+                                .addGap(46, 46, 46))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel40)
+                                .addGap(66, 66, 66))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -313,38 +324,46 @@ public class HomePage extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(101, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(booking)
-                            .addComponent(jLabel36))))
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel36)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel14)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel37))
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel38))
                 .addGap(15, 15, 15))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jLabel17)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(21, 21, 21)))
                 .addGap(23, 23, 23))
         );
 
@@ -443,16 +462,15 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-        //profile profile=new profile(donorid);
-        new profile(donorid).setVisible(true);
+        new staffprofile(id).setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_profileMouseClicked
+    }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        new PasswordReset(donorid).setVisible(true);
+        new StaffPasswordReset(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
@@ -475,12 +493,6 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
-    private void bookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingMouseClicked
-        // TODO add your handling code here:
-        new AddBooking(donorid).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_bookingMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -498,32 +510,47 @@ public class HomePage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HRManagerHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HRManagerHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HRManagerHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HRManagerHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                //new StaffHome().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel booking;
     private javax.swing.JMenuItem exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -548,12 +575,14 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JLabel profile;
     // End of variables declaration//GEN-END:variables
 }
