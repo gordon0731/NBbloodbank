@@ -36,6 +36,7 @@ public class StaffHome extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         exit = new javax.swing.JMenuItem();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -62,7 +63,7 @@ public class StaffHome extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        manageblood = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -83,6 +84,8 @@ public class StaffHome extends javax.swing.JFrame {
             }
         });
         jPopupMenu1.add(exit);
+
+        jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,6 +261,8 @@ public class StaffHome extends javax.swing.JFrame {
             }
         });
 
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Notification_35px.png"))); // NOI18N
         jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -265,8 +270,13 @@ public class StaffHome extends javax.swing.JFrame {
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Notification");
 
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Hospital_35px.png"))); // NOI18N
-        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageblood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Hospital_35px.png"))); // NOI18N
+        manageblood.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageblood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                managebloodMouseClicked(evt);
+            }
+        });
 
         jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,10 +304,10 @@ public class StaffHome extends javax.swing.JFrame {
                                 .addComponent(jLabel14)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
+                                .addGap(52, 52, 52)
                                 .addComponent(jLabel15)
                                 .addGap(79, 79, 79)
-                                .addComponent(jLabel38))
+                                .addComponent(manageblood))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel16)
@@ -327,16 +337,21 @@ public class StaffHome extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(jLabel36)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel38))))
+                            .addComponent(manageblood))))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -350,7 +365,7 @@ public class StaffHome extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel17)
                 .addGap(23, 23, 23))
         );
@@ -481,6 +496,12 @@ public class StaffHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
+    private void managebloodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managebloodMouseClicked
+        // TODO add your handling code here:
+        new AddingBlood().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_managebloodMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -551,13 +572,14 @@ public class StaffHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JLabel manageblood;
     // End of variables declaration//GEN-END:variables
 }

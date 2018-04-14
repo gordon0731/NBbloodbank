@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ui.fordonor;
 
 /**
  *
@@ -58,7 +58,6 @@ public class DonorLogin extends javax.swing.JFrame {
         reset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(874, 700));
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
 

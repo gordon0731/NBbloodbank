@@ -5,6 +5,9 @@
  */
 package ui;
 
+import ui.fordonor.Registration;
+import ui.fordonor.DonorLogin;
+
 /**
  *
  * @author User

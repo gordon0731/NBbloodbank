@@ -5,6 +5,7 @@
  */
 package ui;
 
+import ui.fordonor.CancelBooking;
 import control.MaintainBookingControl;
 import domain.Booking;
 import java.awt.*;

@@ -25,6 +25,9 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         this.sid=sid;
         initComponents();
         staffid.setText(sid);
+        eepass.setVisible(false);
+        epassword.setVisible(false);
+        econpassword.setVisible(false);
         
     }
 
@@ -256,16 +259,13 @@ public class StaffPasswordReset extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(19, 19, 19)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(econpassword)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(password2)
-                                        .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(epassword)
+                                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(eepass))))))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
@@ -286,22 +286,23 @@ public class StaffPasswordReset extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel18)
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel17))
+                        .addComponent(jLabel17)
+                        .addGap(32, 32, 32))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(1, 1, 1)
                         .addComponent(eepass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(epassword)
-                .addGap(9, 9, 9)
+                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(epassword)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(econpassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,8 +344,8 @@ public class StaffPasswordReset extends javax.swing.JFrame {
     private boolean validation(){
         boolean check=true;
         String id=staffid.getText();
-        String p=password1.getText();
-        String p1=password2.getText();
+        String p=password.getText();
+        String p1=password1.getText();
         String p2=password2.getText();
         Staff s = staff.selectRecord(id);
         if(p.equals("")){
@@ -401,12 +402,15 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         String p2=password2.getText();
         Staff s = staff.selectRecord(id);
         if(validation()==true){
-            JOptionPane.showConfirmDialog(null, "Are you sure want to reset the password?","Yes or No",JOptionPane.YES_NO_OPTION);
-            s= new Staff(p1);
-            staff.updateResetRecord(s);
-            JOptionPane.showMessageDialog(null, "Password reset Successfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-            new StaffHome(sid).setVisible(true);
-            this.setVisible(false);
+            int a=JOptionPane.showConfirmDialog(null, "Are you sure want to reset the password?","Yes or No",JOptionPane.YES_NO_OPTION);
+            if(a==JOptionPane.YES_OPTION){
+                s= new Staff(p1);
+                staff.updateResetRecord(s);
+                JOptionPane.showMessageDialog(null, "Password reset Successfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+                new StaffHome(sid).setVisible(true);
+                this.setVisible(false);
+            }
+            
         }
          
     }//GEN-LAST:event_submitMouseClicked

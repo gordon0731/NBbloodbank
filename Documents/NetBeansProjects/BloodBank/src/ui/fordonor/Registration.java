@@ -3,48 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ui.fordonor;
 
 import javax.swing.JOptionPane;
-import controller.*;
+import java.util.Enumeration;
+import java.util.regex.Pattern;
+import javax.swing.AbstractButton;
 import domain.*;
-import javax.swing.JTextField;
+import controller.*;
+import java.awt.Color;
 
 /**
  *
  * @author User
  */
-public class profile extends javax.swing.JFrame {
+public class Registration extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    private String id;
-    private JTextField jtfid = new JTextField();
     private MaintainRegister register;
-    public profile(String id) {
-        this.id=id;
-        register = new MaintainRegister();
+    public Registration() {
+        register=new MaintainRegister();
+        
         initComponents();
-         RegisterDO reg  = register.selectRecord(id);
-         
-         if(reg!=null){
-             donorname.setText(reg.getDonorname());
-             donoric.setText(reg.getDonoric());
-             if(reg.getGender()=='M'){
-                 g.setText("Male");
-             }else if(reg.getGender()=='F'){
-                 g.setText("Female");
-             }
-             
-             address.setText(reg.getAddress());
-             contact.setText(reg.getContact());
-             email.setText(reg.getEmail());
-             blood.setText(reg.getBlood());
-         }
+        initialize();
+        edname1.setVisible(false);
+        edic.setVisible(false);
+        edaddress.setVisible(false);
+        edcontact.setVisible(false);
+        edemail.setVisible(false);
     }
-    
-    public void increament(){
+    public void initialize(){
+        TextPrompt jTextPrompt1 = new TextPrompt("xxxxxx-xx-xxxx", donoric);
+        jTextPrompt1.setForeground(Color.gray);
+        TextPrompt jTextPrompt2 = new TextPrompt("xxx-xxxxxxx", contact);
+        jTextPrompt2.setForeground(Color.gray);
+        TextPrompt jTextPrompt3 = new TextPrompt("you@example.com", email);
+        jTextPrompt3.setForeground(Color.gray);
         
     }
 
@@ -66,6 +62,7 @@ public class profile extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         submit = new javax.swing.JLabel();
         donorname = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -75,17 +72,25 @@ public class profile extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        m = new javax.swing.JRadioButton();
+        f = new javax.swing.JRadioButton();
         donoric = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         address = new javax.swing.JTextArea();
         contact = new javax.swing.JTextField();
-        blood = new javax.swing.JTextField();
-        g = new javax.swing.JTextField();
+        blood = new javax.swing.JComboBox<>();
+        edic = new javax.swing.JLabel();
+        edname1 = new javax.swing.JLabel();
+        edcontact = new javax.swing.JLabel();
+        edaddress = new javax.swing.JLabel();
+        edemail = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
+        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         jPanel8.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -175,10 +180,17 @@ public class profile extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel8.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel8.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Reset_24px_2.png"))); // NOI18N
+        jLabel8.setText("Reset");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         submit.setBackground(new java.awt.Color(51, 51, 255));
         submit.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        submit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Edit_File_26px_5.png"))); // NOI18N
-        submit.setText("Update Information");
+        submit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Form_24px.png"))); // NOI18N
+        submit.setText("Submit");
         submit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         submit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         submit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,7 +199,6 @@ public class profile extends javax.swing.JFrame {
             }
         });
 
-        donorname.setEditable(false);
         donorname.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         donorname.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         donorname.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +228,23 @@ public class profile extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel17.setText("Blood Type");
 
-        donoric.setEditable(false);
+        gender.add(m);
+        m.setSelected(true);
+        m.setText("Male");
+        m.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mActionPerformed(evt);
+            }
+        });
+
+        gender.add(f);
+        f.setText("Female");
+        f.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fActionPerformed(evt);
+            }
+        });
+
         donoric.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         donoric.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,32 +252,40 @@ public class profile extends javax.swing.JFrame {
             }
         });
 
-        address.setEditable(false);
         address.setColumns(20);
         address.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         address.setRows(5);
         jScrollPane1.setViewportView(address);
 
-        contact.setEditable(false);
         contact.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        contact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactActionPerformed(evt);
+            }
+        });
 
-        blood.setEditable(false);
-        blood.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        blood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB", "O" }));
         blood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bloodActionPerformed(evt);
             }
         });
 
-        g.setEditable(false);
-        g.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        g.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gActionPerformed(evt);
-            }
-        });
+        edic.setForeground(new java.awt.Color(255, 0, 0));
+        edic.setText("NRIC");
 
-        email.setEditable(false);
+        edname1.setForeground(new java.awt.Color(255, 0, 0));
+        edname1.setText("Donor Name field cannot be blank!!!");
+
+        edcontact.setForeground(new java.awt.Color(255, 0, 0));
+        edcontact.setText("Contact Number");
+
+        edaddress.setForeground(new java.awt.Color(255, 0, 0));
+        edaddress.setText("Address field cannot be blank!!");
+
+        edemail.setForeground(new java.awt.Color(255, 0, 0));
+        edemail.setText("Email Address");
+
         email.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,46 +298,62 @@ public class profile extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(abc, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edic)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(donorname, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(m)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(f, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(158, 158, 158))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(113, 113, 113)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(donorname, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(abc, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(donoric, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(g, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(edname1)
+                                        .addComponent(donoric, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(edemail)
+                                .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(edcontact)
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(edaddress)
+                                .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,31 +363,44 @@ public class profile extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(donorname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edname1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(donoric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(donoric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edic)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(abc)
-                    .addComponent(g, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(m)
+                    .addComponent(f))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(edcontact, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(edemail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
 
@@ -354,7 +418,7 @@ public class profile extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -368,7 +432,7 @@ public class profile extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        new HomePage(id).setVisible(true);
+        new Index().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
@@ -376,29 +440,124 @@ public class profile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_donornameActionPerformed
 
+    private void mActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mActionPerformed
+
     private void donoricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donoricActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_donoricActionPerformed
 
-    private void bloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloodActionPerformed
+    private void fActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bloodActionPerformed
+    }//GEN-LAST:event_fActionPerformed
 
+    private boolean validateIt() {
+        boolean check = true;
+
+        String dname=donorname.getText();
+        String dic=donoric.getText();
+        String daddr=address.getText();
+        String dcontact=contact.getText();
+        String demail=email.getText();
+        
+        if(dname.equals("")){
+            edname1.setVisible(true);
+            check=false;
+        }else if(!dname.equals("")){
+            check=true;
+            edname1.setVisible(false);
+        }
+        if(dic.equals("")){
+            edic.setText("NRIC field cannot be blank!!");
+            edic.setVisible(true);
+            check=false;
+        }else if(dic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
+            check=true;
+            edic.setVisible(false);
+        }else if(!dic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
+            //JOptionPane.showMessageDialog(null, "Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx","ERROR",JOptionPane.ERROR_MESSAGE);
+            edic.setText("Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx");
+            edic.setVisible(true);
+            check=false;
+        }
+        if(daddr.equals("")){
+            edaddress.setVisible(true);
+            check=false;
+            
+         }else if(!daddr.equals("")){
+             edaddress.setVisible(false);
+             check=true;
+         }
+        if(dcontact.equals("")){
+            edcontact.setText("Contact Number field cannot be blank!!");
+            edcontact.setVisible(true);
+            check=false;
+            
+        }else if(dcontact.matches("([0]){1}([1]){1}([0-9]){1}-([0-9]){7}")){
+            edcontact.setVisible(false);
+            check=true;
+        }else if(!dcontact.matches("([0]){1}([1]){1}([0-9]){1}-([0-9]){7}")){
+            //JOptionPane.showMessageDialog(null, "Invalid Contact Number format enter!!\nExample:012-3456789","ERROR",JOptionPane.ERROR_MESSAGE);
+            edcontact.setText("Invalid Contact Number format enter!!\nExample:012-3456789");
+            edcontact.setVisible(true);
+            check=false;
+        }
+        if(demail.equals("")){
+            edemail.setText("Email Address field cannot be blank!!");
+            edemail.setVisible(true);
+            check=false;
+            
+        }else if(demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
+            edemail.setVisible(false);
+                check=true;
+        }else if(!demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
+             //JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
+             edemail.setText("Invalid email format enter!!\nExample:abc123@gmail.com");
+             edemail.setVisible(true);
+             check=false;
+        }
+        return check;
+    }
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
         // TODO add your handling code here:
+        String dname=donorname.getText();
+        String dic=donoric.getText();
+        String daddr=address.getText();
+        String dcontact=contact.getText();
+        String demail=email.getText();
+        
+           
         
             
+       if(validateIt()==true){
+           for(Enumeration<AbstractButton> buttons =gender.getElements();buttons.hasMoreElements();){
+            AbstractButton button = buttons.nextElement();
+            if(button.isSelected()){
+                char g=button.getText().charAt(0);
+                String b = blood.getSelectedItem().toString();
+                ConfirmRegister ConfirmRegister = new ConfirmRegister(dname,dic,g,daddr,dcontact,demail,b);
+                ConfirmRegister.setVisible(true);
+                this.setVisible(false);
+       }
             
         
+         }
+           
+        }
         
         
         
        
     }//GEN-LAST:event_submitMouseClicked
 
-    private void gActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gActionPerformed
+    private void bloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloodActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gActionPerformed
+    }//GEN-LAST:event_bloodActionPerformed
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
@@ -421,23 +580,21 @@ public class profile extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new profile().setVisible(true);
+                new Registration().setVisible(true);
             }
         });
     }
@@ -445,12 +602,17 @@ public class profile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abc;
     private javax.swing.JTextArea address;
-    private javax.swing.JTextField blood;
+    private javax.swing.JComboBox<String> blood;
     private javax.swing.JTextField contact;
     private javax.swing.JTextField donoric;
     private javax.swing.JTextField donorname;
+    private javax.swing.JLabel edaddress;
+    private javax.swing.JLabel edcontact;
+    private javax.swing.JLabel edemail;
+    private javax.swing.JLabel edic;
+    private javax.swing.JLabel edname1;
     private javax.swing.JTextField email;
-    private javax.swing.JTextField g;
+    private javax.swing.JRadioButton f;
     private javax.swing.ButtonGroup gender;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -461,12 +623,14 @@ public class profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton m;
     private javax.swing.JLabel submit;
     // End of variables declaration//GEN-END:variables
 }

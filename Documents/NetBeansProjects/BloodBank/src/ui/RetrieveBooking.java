@@ -5,6 +5,7 @@
  */
 package ui;
 
+import ui.fordonor.AddBooking;
 import control.MaintainBookingControl;
 import da.BookingDA;
 import domain.Booking;
