@@ -31,7 +31,7 @@ public class RetrieveBlood extends javax.swing.JFrame {
     public ArrayList<Blood> bList(){
         ArrayList<Blood> bList= new ArrayList<>();
         try{
-            String host = "jdbc:derby://localhost:1527/FYP1";
+            String host = "jdbc:derby://localhost:1527/BloodBank";
             String user = "nbuser";
             String password = "nbuser";
             //String tableName = "BloodBank";
@@ -294,7 +294,7 @@ public class RetrieveBlood extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-checked-26.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {

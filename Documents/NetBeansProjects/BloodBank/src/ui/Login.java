@@ -373,7 +373,7 @@ public class Login extends javax.swing.JFrame {
                  }else if(staff.getGender()=='F'){
                     JOptionPane.showMessageDialog(null,"Welcome Ms"+name,"Login successful",JOptionPane.INFORMATION_MESSAGE);
                 }
-                new ManagerHome().setVisible(true);
+                new ManagerHome(id).setVisible(true);
                 this.setVisible(false);
             }
            

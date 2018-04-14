@@ -35,6 +35,25 @@ public class StaffDA {
         
         return staff;
     }
+     public Staff getRecoveryRecord(String email){
+        String get = "SELECT * FROM "+tableName +" WHERE EMAIL =?";
+        Staff staff = null;
+        
+        int i=0;
+        try{
+            stmt = conn.prepareStatement(get);
+            stmt.setString(1,email);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                
+                staff = new Staff(rs.getString("StaffID"),rs.getString("Email"),rs.getString("Position"),rs.getString("SecQuestion"),rs.getString("SecAnswer"));
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        return staff;
+    }
     
     public Staff getRecord(String StaffID) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE StaffID = ?";

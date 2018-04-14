@@ -14,6 +14,9 @@ public class MaintainStaffControl {
     public Staff selectRecord(String StaffID) {
         return staffDA.getRecord(StaffID);
     }
+    public Staff selectRecoveryRecord(String email) {
+        return staffDA.getRecoveryRecord(email);
+    }
     
     public void addRecord(Staff staff){
         staffDA.addRecord(staff);

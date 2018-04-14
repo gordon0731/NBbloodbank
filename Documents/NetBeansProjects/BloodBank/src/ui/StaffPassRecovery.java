@@ -6,25 +6,27 @@
 package ui;
 
 import ui.fordonor.*;
-import javax.swing.JOptionPane;
-import domain.Staff;
 import controller.MaintainStaffControl;
-import ui.*;
+import javax.swing.JOptionPane;
+import domain.*;
 
 /**
  *
  * @author User
  */
-public class StaffPasswordRecovery extends javax.swing.JFrame {
+public class StaffPassRecovery extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
     private MaintainStaffControl staff;
-    public StaffPasswordRecovery() {
+    public StaffPassRecovery(String id){
+        
         staff=new MaintainStaffControl();
         initComponents();
-        edemail.setVisible(false);
+        staffid.setText(id);
+         epassword.setVisible(false);
+        econpassword.setVisible(false);
     }
 
     /**
@@ -51,13 +53,12 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
         submit = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        secans = new javax.swing.JTextArea();
-        jLabel14 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
-        secq = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        edemail = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
+        password1 = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        staffid = new javax.swing.JTextField();
+        epassword = new javax.swing.JLabel();
+        econpassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,7 +164,7 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,42 +209,33 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Security Question");
+        jLabel13.setText("New Password");
 
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel15.setText("Security Answer");
+        jLabel15.setText("Confirm Password");
 
-        secans.setColumns(20);
-        secans.setRows(5);
-        jScrollPane2.setViewportView(secans);
-
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel14.setText("Email");
-
-        email.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        email.addActionListener(new java.awt.event.ActionListener() {
+        password1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                password1ActionPerformed(evt);
             }
         });
 
-        secq.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        secq.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        jLabel3.setText("Your ID number is");
+
+        staffid.setFont(new java.awt.Font("Sitka Banner", 1, 18)); // NOI18N
+        staffid.setBorder(null);
+        staffid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secqActionPerformed(evt);
+                staffidActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setText("Verify");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        epassword.setForeground(new java.awt.Color(255, 0, 0));
+        epassword.setText("Password");
 
-        edemail.setForeground(new java.awt.Color(255, 0, 0));
-        edemail.setText("Email Address");
+        econpassword.setForeground(new java.awt.Color(255, 0, 0));
+        econpassword.setText("Confirm password");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -255,45 +247,49 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(staffid))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(71, 71, 71)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(email)
-                            .addComponent(secq)
+                            .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edemail))
-                                .addGap(0, 45, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(80, 80, 80))
+                                    .addComponent(econpassword)
+                                    .addComponent(epassword))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(167, 167, 167))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edemail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(epassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(econpassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,9 +324,69 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        new DonorLogin().setVisible(true);
+        new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
+
+    private boolean validation(){
+        boolean check=true;
+        String id=staffid.getText();
+        String p1=password1.getText();
+        String p2=password.getText();
+        Staff s = staff.selectRecord(id);
+        if(p1.equals("")){
+            epassword.setText("New Password field cannot be blank!!!");
+            epassword.setVisible(true);
+            check=false;
+        }else if(p1.length()>12||p1.length()<8){
+            epassword.setText("New Password cannot be less than 8  or more than 12 character!!");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password cannot be less than 8  or more than 12 character!!","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }
+        else if(!p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            epassword.setText("Password must contains at least 1 digit,1 lower case and 1 upper case");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password must contains at least one digit,one lower alpha character and one upper alpha character","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }else if(p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            check=true;
+            epassword.setVisible(false);
+        }else if(p1.contains(s.getpassword())){
+            check=false;
+            epassword.setText("New password cannot same as existing password!!");
+            epassword.setVisible(true);
+        }
+        if(p2.isEmpty()){
+            econpassword.setText("Confirm password field cannot be blank!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(!p2.equals(p1)){
+            econpassword.setText("Password and retype not identical!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(p2.equals(p1)){
+            econpassword.setVisible(false);
+            check=true;
+        }
+        return check;
+    }
+    private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
+        // TODO add your handling code here:
+        String id=staffid.getText();
+        Staff s = staff.selectRecord(id);
+        String p1=password1.getText();
+        if(validation()==true){
+            s.setpassword(p1);
+            staff.updateResetRecord(s);
+            JOptionPane.showMessageDialog(null, "Verifying succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+            new DonorLogin().setVisible(true);
+            this.setVisible(false);
+        }
+            
+        
+         
+    }//GEN-LAST:event_submitMouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
@@ -343,70 +399,14 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private boolean validation(){
-        boolean check=true;
-        String demail=email.getText();
-        Staff s = staff.selectRecoveryRecord(demail);
-        if(demail.equals("")){
-            edemail.setText("Email Address field cannot be blank!!");
-            edemail.setVisible(true);
-            check=false;
-            
-        
-        }else if(!demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
-             //JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
-             edemail.setText("Invalid email format enter!!\nExample:abc123@gmail.com");
-             edemail.setVisible(true);
-             check=false;
-        }else if(s==null){
-            edemail.setText("Email Address not found!!");
-            edemail.setVisible(true);
-            check=false;
-        }else{
-            edemail.setVisible(false);
-            check=true;
-        }
-        return check;
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
         // TODO add your handling code here:
-        String demail=email.getText();
-        Staff s = staff.selectRecoveryRecord(demail);
+    }//GEN-LAST:event_password1ActionPerformed
 
-        if(validation()==true){
-            if(s!=null){
-                secq.setText(s.getsecQuestion());
-            }
-            
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void secqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secqActionPerformed
+    private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_secqActionPerformed
+    }//GEN-LAST:event_staffidActionPerformed
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
-        // TODO add your handling code here:
-        String demail=email.getText();
-
-        String seca=secans.getText();
-        Staff s = staff.selectRecoveryRecord(demail);
-        if(seca.equals(s.getsecAnswer())){
-
-            String id=s.getStaffID();
-            System.out.print(id);
-            new StaffPassRecovery(id).setVisible(true);
-            this.setVisible(false);
-
-        }
-
-    }//GEN-LAST:event_submitMouseClicked
-
-    
     /**
      * @param args the command line arguments
      */
@@ -424,14 +424,30 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StaffPasswordRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StaffPassRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StaffPasswordRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StaffPassRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StaffPasswordRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StaffPassRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StaffPasswordRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StaffPassRecovery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -452,22 +468,21 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StaffPasswordRecovery().setVisible(true);
+                //new PassRecovery().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel edemail;
-    private javax.swing.JTextField email;
+    private javax.swing.JLabel econpassword;
+    private javax.swing.JLabel epassword;
     private javax.swing.ButtonGroup gender;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -476,9 +491,9 @@ public class StaffPasswordRecovery extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea secans;
-    private javax.swing.JTextField secq;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField password1;
+    private javax.swing.JTextField staffid;
     private javax.swing.JLabel submit;
     // End of variables declaration//GEN-END:variables
 }
