@@ -6,8 +6,9 @@
 package ui;
 
 import javax.swing.JOptionPane;
-import domain.RegisterDO;
+import domain.*;
 import controller.MaintainRegister;
+import java.awt.Color;
 import java.util.regex.Pattern;
 
 
@@ -53,6 +54,7 @@ public class ConfirmRegister extends javax.swing.JFrame {
         
         
     }
+    
 
     public void increament(){
         RegisterDO regDO = register.selectLastRecord();
@@ -232,20 +234,37 @@ public class ConfirmRegister extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel15.setText("Security Answer");
 
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+
+        confirmpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmpasswordActionPerformed(evt);
+            }
+        });
+
         secq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your mother's name ?", "What is your father's name ?", "Item 3", "Item 4" }));
+        secq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secqActionPerformed(evt);
+            }
+        });
 
         secans.setColumns(20);
         secans.setRows(5);
         jScrollPane2.setViewportView(secans);
 
         epassword.setForeground(new java.awt.Color(255, 0, 0));
-        epassword.setText("Password field cannot be blank!!!");
+        epassword.setText("Password");
 
         econpassword.setForeground(new java.awt.Color(255, 0, 0));
-        econpassword.setText("Confirm password field cannot be blank!!");
+        econpassword.setText("Confirm password");
 
         esecans.setForeground(new java.awt.Color(255, 0, 0));
-        esecans.setText("Security answer field cannot be blank!!");
+        esecans.setText("Security answer");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -254,72 +273,71 @@ public class ConfirmRegister extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(abc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(abc, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel13))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(esecans))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(donorid, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(epassword)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(econpassword)
+                                    .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(30, 30, 30)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(epassword))
-                                    .addComponent(donorid, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(econpassword))))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(esecans)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(donorid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(epassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(abc)
-                    .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(econpassword))
-                .addGap(53, 53, 53)
+                    .addComponent(jLabel6)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(epassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(abc))
+                .addGap(5, 5, 5)
+                .addComponent(econpassword)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(esecans)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                    .addComponent(jLabel13)
+                    .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(esecans)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,29 +386,45 @@ public class ConfirmRegister extends javax.swing.JFrame {
         boolean check=true;
         String p=password.getText();
         String cp=confirmpassword.getText();
+        String seca=secans.getText();
         if(p.equals("")){
+            epassword.setText("Password field cannot be blank!!!");
             epassword.setVisible(true);
             check=false;
             
         }else if(p.length()>12||p.length()<8){
-            epassword.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Password cannot be less than 8  or more than 12 character!!","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            epassword.setText("Password cannot be less than 8  or more than 12 character!!");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password cannot be less than 8  or more than 12 character!!","Invalid format enter",JOptionPane.ERROR_MESSAGE);
             check=false;
         }
         else if(!p.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
-            epassword.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Password must contains at least one digit,one lower alpha character and one upper alpha character","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            epassword.setText("Password must contains at least 1 digit,1 lower case and 1 upper case");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password must contains at least one digit,one lower alpha character and one upper alpha character","Invalid format enter",JOptionPane.ERROR_MESSAGE);
             check=false;
         }else if(p.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
             check=true;
+            epassword.setVisible(false);
         }
         if(cp.isEmpty()){
+            econpassword.setText("Confirm password field cannot be blank!!");
             econpassword.setVisible(true);
             check=false;
         }else if(!cp.equals(p)){
-            econpassword.setVisible(false);
+            econpassword.setText("Password and retype not identical!!");
+            econpassword.setVisible(true);
             check=false;
         }else if(cp.equals(p)){
+            econpassword.setVisible(false);
+            check=true;
+        }
+        if(seca.isEmpty()){
+            esecans.setText("Security answer field cannot be blank!!");
+            esecans.setVisible(true);
+            check=false;
+        }else if(!seca.isEmpty()){
+            esecans.setVisible(false);
             check=true;
         }
         return check;
@@ -404,7 +438,7 @@ public class ConfirmRegister extends javax.swing.JFrame {
          if(validateit()==true){
             if (reg != null) {
                 // show dialog message "programme code already exist"
-                JOptionPane.showMessageDialog(null, "Programme already exist.","RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Donor already exist.","RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
                 
                 
             } else {
@@ -414,10 +448,22 @@ public class ConfirmRegister extends javax.swing.JFrame {
             
                 // call addRecord in progControl
               register.addRecord(reg);
-              JOptionPane.showMessageDialog(null, "New Student added","Successfully",JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null, "New registration added","Successfully",JOptionPane.INFORMATION_MESSAGE);
             }
          }
     }//GEN-LAST:event_submitMouseClicked
+
+    private void secqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secqActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_secqActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void confirmpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmpasswordActionPerformed
 
     /**
      * @param args the command line arguments

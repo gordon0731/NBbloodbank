@@ -5,17 +5,25 @@
  */
 package ui;
 
+import controller.MaintainBloodControl;
+import da.BloodDA;
+import domain.Blood;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 /**
  *
  * @author LO
  */
 public class DeleteBlood extends javax.swing.JFrame {
 
+    private MaintainBloodControl bloodControl;
     /**
      * Creates new form StaffMaintenance
      */
     public DeleteBlood() {
         initComponents();
+        bloodControl= new MaintainBloodControl();
     }
 
     /**
@@ -315,7 +323,8 @@ public class DeleteBlood extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new DeleteBlood1().setVisible(true);
+        String id= jTextField6.getText();
+        new DeleteBlood1(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

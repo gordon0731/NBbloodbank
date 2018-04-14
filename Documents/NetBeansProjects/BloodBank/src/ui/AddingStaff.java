@@ -22,10 +22,23 @@ public class AddingStaff extends javax.swing.JFrame {
      * Creates new form StaffMaintenance
      */
     public AddingStaff() {
-        
-        initComponents();
         staffControl = new MaintainStaffControl();
+        initComponents();
+        increament();
+        
         jButton1.addActionListener(new AddListener());
+        
+    }
+    
+    public void increament(){
+            Staff staff = staffControl.selectLastRecord();
+ 
+            String bloodID = staff.getStaffID();
+            String code = bloodID.substring(0, 2);
+            int numInc = Integer.parseInt(bloodID.substring(2, 6)) + 1;
+            String newID = code + String.format("%04d", numInc);
+        
+            jtfid.setText(newID);
         
     }
     
@@ -45,9 +58,9 @@ public class AddingStaff extends javax.swing.JFrame {
                 
             } else {
                 // use constuctor in Programme
-             char gender = (char)jComboBox1.getSelectedItem();  
+             String gender = (String)jComboBox1.getSelectedItem();  
              String position = (String)jComboBox2.getSelectedItem();
-             staff = new Staff(jtfid.getText(), jtfname.getText(), jtfic.getText(), gender, Integer.parseInt(jtfage.getText()), jTextArea1.getText(), jtfno.getText(), jtfemail.getText(), position, jtfpassword.getText(), jtfsecq.getText(), jtfseca.getText());
+             staff = new Staff(jtfid.getText(), jtfname.getText(), jtfic.getText(), gender.charAt(0), Integer.parseInt(jtfage.getText()), jTextArea1.getText(), jtfno.getText(), jtfemail.getText(), position, jtfpassword.getText(), jtfsecq.getText(), jtfseca.getText());
              staffControl.addRecord(staff);
                  // call addRecord in progControl
 
@@ -349,6 +362,8 @@ public class AddingStaff extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText(" Staff ID");
 
+        jtfid.setEditable(false);
+
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText(" Password");
 
@@ -505,7 +520,7 @@ public class AddingStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new RetrieveStaff().setVisible(true);
+        new RetrieveStaff0().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 

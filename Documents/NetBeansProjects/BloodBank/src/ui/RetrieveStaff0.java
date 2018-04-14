@@ -11,101 +11,24 @@ import da.StaffDA;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.ArrayList;
 import java.sql.*;
-import javax.swing.table.*;
 /**
  *
  * @author LO
  */
-public class RetrieveStaff extends javax.swing.JFrame {
+public class RetrieveStaff0 extends javax.swing.JFrame {
 
     //private MaintainStaffControl staffControl;
-    private String host= "jdbc:derby://localhost:1527/FYP1";
-    private String user= "nbuser";
-    private String password= "nbuser";
-    private Connection conn;
-    private PreparedStatement stmt;
-    
-    private MaintainStaffControl staffControl;
-    private JTextField jtfpos1= new JTextField();
-    private String position;
 
     /**
      * Creates new form StaffMaintenance
      */
-    public RetrieveStaff(String position) {
+    public RetrieveStaff0() {
         initComponents();
-        jtfpos1.setText(position);
-        staffControl= new MaintainStaffControl();
-        this.position=position;
-        //Staff staff= staffControl.selectRecord(jtfpos1.getText());
-        //if(staff!=null){
-        createConnection();
-        show_staff();
-        //}
     }
     
-    public ArrayList<Staff> sList(){
-        ArrayList<Staff> sList= new ArrayList<> ();
-        try{
-            //String host = "jdbc:derby://localhost:1527/FYP1";
-            //String user = "nbuser";
-            //String password = "nbuser";
-            //String tableName = "BloodBank";
-            Connection conn= DriverManager.getConnection(host, user, password);
-            String query1= "SELECT * FROM Staff WHERE position=?";
-             stmt= conn.prepareStatement(query1);
-            
-            stmt.setString(1,position);
-            ResultSet rs= stmt.executeQuery();
-            Staff staff;
-            while(rs.next()){
-                staff = new Staff(rs.getString("StaffID"), rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getInt("Age"), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
-                sList.add(staff);
-            }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return sList;
-    }
     
-    public void show_staff(){
-        ArrayList<Staff> list= sList();
-        DefaultTableModel model= (DefaultTableModel)jtable.getModel();
-        Object[] row= new Object[8];
-        for(int i=0; i<list.size(); i++){
-            row[0]= list.get(i).getStaffID();
-            row[1]= list.get(i).getStaffName();
-            row[2]= list.get(i).getStaffNRIC();
-            row[3]= list.get(i).getGender();
-            row[4]= list.get(i).getAge();
-            row[5]= list.get(i).getAddress();
-            row[6]= list.get(i).getContactNo();
-            row[7]= list.get(i).getEmail();
-            //row[8]= list.get(i).getposition();
-            model.addRow(row);
-        }
-    }
-
-    private void createConnection() {
-        try {
-            conn = DriverManager.getConnection(host, user, password);
-            System.out.println("***TRACE: Connection established.");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     
-    private void shutDown() {
-        if (conn != null)
-            try {
-            conn.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,8 +54,8 @@ public class RetrieveStaff extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jcbposition = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -275,7 +198,7 @@ public class RetrieveStaff extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(122, 72, 221));
@@ -335,23 +258,10 @@ public class RetrieveStaff extends javax.swing.JFrame {
         jButton2.setText("Reset");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel5.setText(" Position");
 
-            },
-            new String [] {
-                "ID", "Name", "IC", "Gender", "Age", "Address", "ContactNo", "Email"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(jtable);
+        jcbposition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nurse", "Blood Bank Staff", "Manager", "HR Manager" }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -363,17 +273,20 @@ public class RetrieveStaff extends javax.swing.JFrame {
                 .addGap(113, 113, 113)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jcbposition, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbposition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -427,8 +340,9 @@ public class RetrieveStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        /*new RetrieveStaff().setVisible(true);
-        this.setVisible(false);*/
+        String position= jcbposition.getSelectedItem().toString();
+        new RetrieveStaff(position).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**
@@ -448,14 +362,22 @@ public class RetrieveStaff extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RetrieveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RetrieveStaff0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RetrieveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RetrieveStaff0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RetrieveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RetrieveStaff0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RetrieveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RetrieveStaff0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -468,7 +390,7 @@ public class RetrieveStaff extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new RetrieveStaff().setVisible(true);
+                new RetrieveStaff0().setVisible(true);
             }
         });
     }
@@ -481,6 +403,7 @@ public class RetrieveStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -490,8 +413,6 @@ public class RetrieveStaff extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jtable;
+    private javax.swing.JComboBox<String> jcbposition;
     // End of variables declaration//GEN-END:variables
 }

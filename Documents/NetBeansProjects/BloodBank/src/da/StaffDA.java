@@ -5,15 +5,35 @@ import java.sql.*;
 import javax.swing.*;
 
 public class StaffDA {
-    private String host = "jdbc:derby://localhost:1527/BloodBank";
+    private String host = "jdbc:derby://localhost:1527/FYP1";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "Staff";
     private Connection conn;
     private PreparedStatement stmt;
+    private ResultSet rs;
     
     public StaffDA() {
         createConnection();
+    }
+
+    public Staff getLastRecord(){
+        String query = "select * from " + tableName;
+        Staff staff = null;
+        
+        try{
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                //blood = new Blood();
+                staff = new Staff(rs.getString("StaffID"));
+            }
+        }catch(SQLException ex ){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        return staff;
     }
     
     public Staff getRecord(String StaffID) {
@@ -33,9 +53,6 @@ public class StaffDA {
         return staff;
     }
     
-   
-   
-    
         
      public void addRecord(Staff staff) {
        String insertStr = "INSERT INTO " + tableName + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -43,8 +60,8 @@ public class StaffDA {
               //insert a new table row refer chap 5 slides 28, change .getText to getCode refer programme.java in domain
                 stmt = conn.prepareStatement(insertStr);
                 stmt.setString(1, staff.getStaffID());
-                stmt.setString(12, staff.getStaffName() + "");
-                stmt.setString(2, staff.getStaffNRIC() + "");
+                stmt.setString(12, staff.getStaffName());
+                stmt.setString(2, staff.getStaffNRIC());
                 stmt.setString(3, String.valueOf(staff.getGender()));
                 stmt.setInt(4, staff.getAge());
                 stmt.setString(5, staff.getAddress());

@@ -18,12 +18,20 @@ import javax.swing.*;
 public class DeleteBlood1 extends javax.swing.JFrame {
 
     private MaintainBloodControl bloodControl;
+    private JTextField jtfid1= new JTextField(); 
     /**
      * Creates new form StaffMaintenance
      */
-    public DeleteBlood1() {
+    public DeleteBlood1(String id) {
         initComponents();
+        jtfid1.setText(id);
         bloodControl= new MaintainBloodControl();
+        Blood blood= bloodControl.selectRecord(jtfid1.getText());
+        if(blood != null){
+            jtfid.setText(jtfid1.getText());
+            jtftype.setText(blood.getBloodType());
+            jtfquantity.setText(blood.getBloodQuantity()+"");
+        }
         jButton1.addActionListener(new DeleteListener());
     }
 
@@ -308,6 +316,8 @@ public class DeleteBlood1 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Blood ID");
 
+        jtfid.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,9 +331,7 @@ public class DeleteBlood1 extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtftype, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
@@ -441,7 +449,7 @@ public class DeleteBlood1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteBlood1().setVisible(true);
+                //new DeleteBlood1().setVisible(true);
             }
         });
     }

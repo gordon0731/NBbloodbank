@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package ui;
+import controller.MaintainBloodControl;
+import da.BloodDA;
+import domain.Blood;
+import java.awt.*;
+import java.awt.Event.*;
+import javax.swing.*;
 
 /**
  *
@@ -312,7 +318,8 @@ public class UpdateBlood extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new UpdatingBlood1().setVisible(true);
+        String id= jTextField6.getText();
+        new UpdateBlood1(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

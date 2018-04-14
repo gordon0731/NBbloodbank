@@ -117,7 +117,7 @@ public class AddBooking extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Form_24px.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Reserve_26px_1.png"))); // NOI18N
         jLabel6.setText("Booking for Blood Donation");
         jLabel6.setMaximumSize(new java.awt.Dimension(132, 35));
         jLabel6.setMinimumSize(new java.awt.Dimension(132, 35));
@@ -132,10 +132,10 @@ public class AddBooking extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class AddBooking extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -409,7 +409,7 @@ public class AddBooking extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        new CancelBooking().setVisible(true);
+        new CancelBooking(did).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -422,8 +422,7 @@ public class AddBooking extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfidActionPerformed
 
-    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
-        // TODO add your handling code here:
+    private boolean validation(){
         Booking book=bookControl.selectMonthRecord(did);
         int year=0;
         int month=0;
@@ -441,35 +440,39 @@ public class AddBooking extends javax.swing.JFrame {
             java.sql.Date date1=new java.sql.Date(date.getDate().getTime());
             String newd=date1.toString();
              year = Integer.parseInt(newd.substring(0,4));
-            month=Integer.parseInt(newd.substring(6,7));
+            month=Integer.parseInt(newd.substring(6,7))-3;
             day=Integer.parseInt(newd.substring(8,10));
             System.out.print(newd);
         }
        
        
-       String current=LocalDateTime.now().toString();
+       java.sql.Date currentnew=new java.sql.Date(date.getDate().getTime());
+       String current = currentnew.toString();
        int cyear=Integer.parseInt(current.substring(0,4));
        int cmonth=Integer.parseInt(current.substring(6,7));
        int cday=Integer.parseInt(current.substring(8,10));
        boolean check=true;
-       if(year<cyear||year==cyear){
+       if(cyear>year){
            check=true;
-           if(month<cmonth||month==cmonth){
-               check=true;
-               if(day<cday||day==cday){
-                   check=true;
-               }else{
-                   check=false;
-               }
-           }else{
-               check=false;
-           }
-           
-       }else{
+       }
+       else if(year==cyear&&cmonth>month){
+           check=true;
+       }else if(year==cyear&&month==cmonth&&cday>day){
+           check=true;
+       }else if(year==cyear&&month==cmonth&&cday==day){
+           check=true;
+       }
+       else{
            check=false;
        }
+       return check;
+    }
+    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
+        // TODO add your handling code here:
+        
      
-           if(check==true){
+           if(validation()==true){
+               Booking book=bookControl.selectMonthRecord(did);
                String id=jtfid.getText();
                java.sql.Date date1=new java.sql.Date(date.getDate().getTime());
                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -488,7 +491,7 @@ public class AddBooking extends javax.swing.JFrame {
               book = new Booking(id,date1,tim,room,r, s,status);
               bookControl.addRecord(book);
               JOptionPane.showMessageDialog(null, "Thank you for your appointment","Booking Status",JOptionPane.INFORMATION_MESSAGE);
-           } else if(check==false){
+           } else if(validation()==false){
                JOptionPane.showMessageDialog(null, "ERROR");
            new HomePage(did).setVisible(true);
                    this.setVisible(false);

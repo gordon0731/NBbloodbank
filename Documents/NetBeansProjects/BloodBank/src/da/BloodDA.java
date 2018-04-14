@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package da;
 
 import domain.Blood;
 import java.sql.*;
-import java.util.ArrayList;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class BloodDA {
-    private String host = "jdbc:derby://localhost:1527/BloodBank";
+    private String host = "jdbc:derby://localhost:1527/FYP1";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "BloodBank";
     private Connection conn;
     private PreparedStatement stmt;
+    private ResultSet rs;
     
     public BloodDA() {
         createConnection();
@@ -30,13 +25,32 @@ public class BloodDA {
             stmt = conn.prepareStatement(queryStr);
             stmt.setString(1, BloodID);
             ResultSet rs = stmt.executeQuery();
+            
             if (rs.next()) {
                 blood = new Blood(BloodID, rs.getString("BloodType"), rs.getInt("BloodQuantity"));
             }
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        return blood;
+    }
+    
+    public Blood getLastRecord(){
+        String query = "select * from " + tableName;
+        Blood blood = null;
+        
+        try{
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                //blood = new Blood();
+                blood = new Blood(rs.getString("BloodID"));
+            }
+        }catch(SQLException ex ){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         return blood;
     }
     
@@ -62,30 +76,14 @@ public class BloodDA {
           
         return bloodlist;
     }
-    
-    public Blood getbloodrecord() {
-        String queryStr = "SELECT * FROM " + tableName ;
-        Blood blood= null;
-        try {
-            stmt = conn.prepareStatement(queryStr);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                blood = new Blood(rs.getString("bloodid"),rs.getString("bloodtype"),rs.getInt("bloodquantity"));
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        return blood;
-    }
-    
         
      public void addRecord(Blood blood) {
        String insertStr = "INSERT INTO " + tableName + " VALUES(?, ?, ?)";
         try {
               //insert a new table row refer chap 5 slides 28, change .getText to getCode refer programme.java in domain
                 stmt = conn.prepareStatement(insertStr);
-                stmt.setString(1, blood.getBloodID());stmt.setString(2, blood.getBloodType());
+                stmt.setString(1, blood.getBloodID());
+                stmt.setString(2, blood.getBloodType());
                 stmt.setInt(3, blood.getBloodQuantity());
                 stmt.executeUpdate();
               
@@ -106,8 +104,9 @@ public void deleteRecord(Blood blood){
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
     }
-} 
-public void updateRecord(Blood blood){
+}
+    
+    public void updateRecord(Blood blood){
         
                 try{
                     
@@ -120,9 +119,13 @@ public void updateRecord(Blood blood){
                 }
                 catch(SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
-                }
+    }
+        
+
 }
- private void createConnection() {
+
+    
+    private void createConnection() {
         try {
             conn = DriverManager.getConnection(host, user, password);
             System.out.println("***TRACE: Connection established.");
@@ -142,16 +145,8 @@ public void updateRecord(Blood blood){
     
     public static void main(String[] args) {
         BloodDA da = new BloodDA();
-        ArrayList<Blood> bList = new ArrayList<Blood>();
-        bList = da.getAllRecord();
         Blood blood = da.getRecord("IA");
-        System.out.println(bList.size());
-        for(int i =0;i<bList.size();i++){
-             System.out.println(bList.get(i));
+        System.out.println(blood);
         }
-       
     }
-}
-
-
 

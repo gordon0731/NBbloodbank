@@ -23,6 +23,8 @@ public class PassRecovery extends javax.swing.JFrame {
         register=new MaintainRegister();
         initComponents();
         donorid.setText(id);
+         epassword.setVisible(false);
+        econpassword.setVisible(false);
     }
 
     /**
@@ -53,11 +55,12 @@ public class PassRecovery extends javax.swing.JFrame {
         password1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         donorid = new javax.swing.JTextField();
+        epassword = new javax.swing.JLabel();
+        econpassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Go_Back_35px.png"))); // NOI18N
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -66,7 +69,6 @@ public class PassRecovery extends javax.swing.JFrame {
                 jLabel12MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jPanel9.setBackground(new java.awt.Color(85, 65, 118));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,8 +99,6 @@ public class PassRecovery extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 300, -1));
-
         jPanel5.setBackground(new java.awt.Color(85, 65, 118));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -128,7 +128,26 @@ public class PassRecovery extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 300, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel12))
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel12)
+                .addGap(15, 15, 15)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jPanel2.setBackground(new java.awt.Color(122, 72, 221));
 
@@ -210,21 +229,18 @@ public class PassRecovery extends javax.swing.JFrame {
             }
         });
 
+        epassword.setForeground(new java.awt.Color(255, 0, 0));
+        epassword.setText("Password");
+
+        econpassword.setForeground(new java.awt.Color(255, 0, 0));
+        econpassword.setText("Confirm password");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +251,21 @@ public class PassRecovery extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(donorid)))
+                        .addComponent(donorid))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(econpassword)
+                                    .addComponent(epassword))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(167, 167, 167))
         );
         jPanel4Layout.setVerticalGroup(
@@ -249,11 +279,15 @@ public class PassRecovery extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(epassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(econpassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,7 +308,7 @@ public class PassRecovery extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -292,17 +326,62 @@ public class PassRecovery extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
+    private boolean validation(){
+        boolean check=true;
+        String id=donorid.getText();
+        String p1=password1.getText();
+        String p2=password.getText();
+        RegisterDO reg = register.selectRecord(id);
+        if(p1.equals("")){
+            epassword.setText("New Password field cannot be blank!!!");
+            epassword.setVisible(true);
+            check=false;
+        }else if(p1.length()>12||p1.length()<8){
+            epassword.setText("New Password cannot be less than 8  or more than 12 character!!");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password cannot be less than 8  or more than 12 character!!","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }
+        else if(!p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            epassword.setText("Password must contains at least 1 digit,1 lower case and 1 upper case");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password must contains at least one digit,one lower alpha character and one upper alpha character","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }else if(p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            check=true;
+            epassword.setVisible(false);
+        }else if(p1.contains(reg.getPassword())){
+            check=false;
+            epassword.setText("New password cannot same as existing password!!");
+            epassword.setVisible(true);
+        }
+        if(p2.isEmpty()){
+            econpassword.setText("Confirm password field cannot be blank!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(!p2.equals(p1)){
+            econpassword.setText("Password and retype not identical!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(p2.equals(p1)){
+            econpassword.setVisible(false);
+            check=true;
+        }
+        return check;
+    }
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
         // TODO add your handling code here:
         String id=donorid.getText();
         RegisterDO reg = register.selectRecord(id);
-        if(reg.getDonorid()!=null){
+        if(validation()==true){
             reg.setPassword(password1.getText());
             register.updateRecord(reg);
             JOptionPane.showMessageDialog(null, "Verifying succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-         new DonorLogin().setVisible(true);
-        this.setVisible(false);
+            new DonorLogin().setVisible(true);
+            this.setVisible(false);
         }
+            
+        
          
     }//GEN-LAST:event_submitMouseClicked
 
@@ -377,6 +456,8 @@ public class PassRecovery extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField donorid;
+    private javax.swing.JLabel econpassword;
+    private javax.swing.JLabel epassword;
     private javax.swing.ButtonGroup gender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

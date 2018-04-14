@@ -24,23 +24,24 @@ public class UpdatingStaff extends javax.swing.JFrame {
     public UpdatingStaff() {
         initComponents();
         staffControl = new MaintainStaffControl();
-        jButton1.addActionListener(new UpdateListener());
+        //jButton1.addActionListener(new UpdateListener());
     }
 
-    private class UpdateListener implements ActionListener{
+    /*private class UpdateListener implements ActionListener{
               @Override
               public void actionPerformed(ActionEvent e){
                   Staff staff = staffControl.selectRecord(jTextField6.getText());
                   if(staff!=null){
-                      new UpdatingStaff1().setVisible(true);
+                      String id= jTextField6.getText();
+                      new UpdatingStaff1(id).setVisible(true);
                       setVisible(false);
                       /* //////////////////////////// */
                       
-                  }else{
+                  /*}else{
                       JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND",JOptionPane.INFORMATION_MESSAGE);
                   }
               }
-        }
+        }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -317,10 +318,10 @@ public class UpdatingStaff extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        UpdatingStaff1 us1 = new UpdatingStaff1(jTextField6.getText());
+        //UpdatingStaff1 us1 = new UpdatingStaff1(jTextField6.getText());
         
-        us1.setVisible(true);
-        this.setVisible(false);
+        //.setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -329,7 +330,7 @@ public class UpdatingStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new RetrieveStaff().setVisible(true);
+        new RetrieveStaff0().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -344,7 +345,8 @@ public class UpdatingStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new UpdatingStaff1().setVisible(true);
+        String id= jTextField6.getText();
+        new UpdatingStaff1(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

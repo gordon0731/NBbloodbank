@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+*/
 package ui;
 
 import controller.MaintainBloodControl;
@@ -11,6 +10,7 @@ import domain.Blood;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author LO
@@ -18,15 +18,29 @@ import javax.swing.*;
 public class AddingBlood extends javax.swing.JFrame {
 
     private MaintainBloodControl bloodControl;
+        
+    
     /**
      * Creates new form StaffMaintenance
      */
     public AddingBlood() {
-        initComponents();
         bloodControl= new MaintainBloodControl();
+        initComponents();
+        increament();
+        
         jButton1.addActionListener(new AddListener());
     }
-
+        public void increament(){
+            Blood blood = bloodControl.selectLastRecord();
+ 
+            String bloodID = blood.getBloodID();
+            String code = bloodID.substring(0, 2);
+            int numInc = Integer.parseInt(bloodID.substring(2, 6)) + 1;
+            String newID = code + String.format("%04d", numInc);
+        
+            jtfid.setText(newID);
+        
+    }
     private class AddListener implements ActionListener {
 
         @Override
@@ -38,23 +52,33 @@ public class AddingBlood extends javax.swing.JFrame {
             if (blood != null) {
                 // show dialog message "programme code already exist"
                 
-                JOptionPane.showMessageDialog(null, "Student already exist.", "RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Blood already exist.", "RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
                 
                 
             } else {
                 // use constuctor in Programme
-             blood = new Blood(jtfid.getText(), jtftype.getText(), Integer.parseInt(jtfquantity.getText()));
+                String type= (String)jComboBox1.getSelectedItem();
+                blood = new Blood(jtfid.getText(), type, Integer.parseInt(jtfquantity.getText()));
              bloodControl.addRecord(blood);
                  // call addRecord in progControl
 
              
                 // show message dialog "New programme added"
-              JOptionPane.showMessageDialog(null, "New Programme Added", "RECORD ADDED",JOptionPane.INFORMATION_MESSAGE);
+              JOptionPane.showMessageDialog(null, "New Blood Added", "RECORD ADDED",JOptionPane.INFORMATION_MESSAGE);
               
             }
-
+ 
         }
+        
+        
+        
+        
     }
+        
+        
+        
+        
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,13 +103,13 @@ public class AddingBlood extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jtftype = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jtfid = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jtfquantity = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -302,6 +326,8 @@ public class AddingBlood extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText(" Blood ID");
 
+        jtfid.setEditable(false);
+
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText(" Quantity (ml)");
 
@@ -310,6 +336,9 @@ public class AddingBlood extends javax.swing.JFrame {
                 jtfquantityActionPerformed(evt);
             }
         });
+
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB", "O" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -326,7 +355,6 @@ public class AddingBlood extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 157, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,8 +362,8 @@ public class AddingBlood extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtfid, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
-                            .addComponent(jtftype)
-                            .addComponent(jtfquantity)))))
+                            .addComponent(jtfquantity)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,10 +375,13 @@ public class AddingBlood extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtftype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -446,6 +477,7 @@ public class AddingBlood extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -464,6 +496,5 @@ public class AddingBlood extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField jtfid;
     private javax.swing.JTextField jtfquantity;
-    private javax.swing.JTextField jtftype;
     // End of variables declaration//GEN-END:variables
 }

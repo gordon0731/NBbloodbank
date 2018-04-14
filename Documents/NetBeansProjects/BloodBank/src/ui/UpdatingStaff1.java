@@ -18,6 +18,7 @@ import javax.swing.*;
 public class UpdatingStaff1 extends javax.swing.JFrame {
 
     private MaintainStaffControl staffControl;
+    private JTextField jtfid1= new JTextField();
     /**
      * Creates new form StaffMaintenance
      */
@@ -28,9 +29,25 @@ public class UpdatingStaff1 extends javax.swing.JFrame {
         jButton1.addActionListener(new UpdateListener());
     }
     
-    public UpdatingStaff1(String StaffID) {
+    public UpdatingStaff1(String id) {
         initComponents();        
-        jtfid.setText(StaffID);
+        jtfid1.setText(id);
+        staffControl= new MaintainStaffControl();
+        Staff staff= staffControl.selectRecord(jtfid1.getText());
+        if(staff!=null){
+            jtfid.setText(jtfid1.getText());
+            jtfname.setText(staff.getStaffName());
+            jtfic.setText(staff.getStaffNRIC());
+            jtfgender.setText(String.valueOf(staff.getGender()));
+            jtfage.setText(staff.getAge()+"");
+            jTextArea1.setText(staff.getAddress());
+            jtfno.setText(staff.getContactNo());
+            jtfemail.setText(staff.getEmail());
+            jtfposition.setText(staff.getposition());
+            jtfpassword.setText(staff.getpassword());
+            jtfsecq.setText(staff.getsecQuestion());
+            jtfseca.setText(staff.getsecAnswer());
+        }
     }
 
     private class UpdateListener implements ActionListener{
@@ -339,6 +356,7 @@ public class UpdatingStaff1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText(" Staff ID");
 
+        jtfid.setEditable(false);
         jtfid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfidActionPerformed(evt);
@@ -393,18 +411,15 @@ public class UpdatingStaff1 extends javax.swing.JFrame {
                             .addComponent(jtfno)
                             .addComponent(jScrollPane1)
                             .addComponent(jtfemail)
-                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(jtfposition, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfseca, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfsecq, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtfposition, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfseca, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfsecq, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jtfgender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtfage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jtfpassword, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, 0))))))
+                                    .addComponent(jtfgender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jtfpassword, javax.swing.GroupLayout.Alignment.LEADING)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,7 +494,7 @@ public class UpdatingStaff1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new RetrieveStaff().setVisible(true);
+        new RetrieveStaff0().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 

@@ -22,9 +22,9 @@ public class DeletingStaff extends javax.swing.JFrame {
      * Creates new form StaffMaintenance
      */
     public DeletingStaff() {
-        staffControl = new MaintainStaffControl();
-        //jButton1.addActionListener(new DeleteListener());
+        
         initComponents();
+        staffControl = new MaintainStaffControl();
     }
     
     
@@ -312,7 +312,7 @@ public class DeletingStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new RetrieveStaff().setVisible(true);
+        new RetrieveStaff0().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -327,7 +327,8 @@ public class DeletingStaff extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new DeletingStaff1().setVisible(true);
+        String id= jTextField6.getText();
+        new DeletingStaff1(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

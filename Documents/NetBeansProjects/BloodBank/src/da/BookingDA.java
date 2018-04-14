@@ -51,7 +51,7 @@ public class BookingDA {
                 stmt.setString(1, id);
                 stmt.setString(2, bs);
                 ResultSet rs = stmt.executeQuery();
-            if(rs.next()){ 
+            while(rs.next()){ 
                 RegisterDO d = donorDA.getRecord(id);
                 Staff s = staffda.getRecord(rs.getString("staffid"));
                 booking = new Booking(rs.getString("BookingID"), rs.getDate("Date"), rs.getTime("Time"), rs.getString("RoomNo"), d, s, rs.getString("bookingStatus"));
@@ -112,8 +112,9 @@ public class BookingDA {
 
 public void deleteRecord(Booking booking){
 
+    String query="DELETE FROM "+tableName+" WHERE BookingID = ?";
     try{
-        stmt = conn.prepareStatement("DELETE FROM Booking WHERE BookingID = ?");
+        stmt = conn.prepareStatement(query);
         stmt.setString(1, booking.getBookingID());
         stmt.executeUpdate();
     }catch(SQLException ex){

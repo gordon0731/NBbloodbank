@@ -57,22 +57,17 @@
                           <Component id="jtfno" alignment="1" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jtfemail" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Component id="jtfposition" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfseca" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfsecq" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jtfposition" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtfseca" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtfsecq" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jtfgender" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                          <Component id="jtfage" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jtfpassword" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfgender" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="jtfage" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfpassword" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -578,6 +573,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfid">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfidActionPerformed"/>
       </Events>

@@ -22,6 +22,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
     public PasswordRecovery() {
         register=new MaintainRegister();
         initComponents();
+        edemail.setVisible(false);
     }
 
     /**
@@ -48,16 +49,17 @@ public class PasswordRecovery extends javax.swing.JFrame {
         submit = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        secq = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         secans = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
-        donorid = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        secq = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        edemail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Go_Back_35px.png"))); // NOI18N
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -66,7 +68,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 jLabel12MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jPanel9.setBackground(new java.awt.Color(85, 65, 118));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,8 +98,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 300, -1));
-
         jPanel5.setBackground(new java.awt.Color(85, 65, 118));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -128,7 +127,26 @@ public class PasswordRecovery extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 300, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel12))
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel12)
+                .addGap(15, 15, 15)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jPanel2.setBackground(new java.awt.Color(122, 72, 221));
 
@@ -143,7 +161,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +211,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel15.setText("Security Answer");
 
-        secq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your mother's name?", "What is your father's name ?", "Item 3", "Item 4" }));
-
         secans.setColumns(20);
         secans.setRows(5);
         jScrollPane2.setViewportView(secans);
@@ -202,12 +218,30 @@ public class PasswordRecovery extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel14.setText("Email");
 
-        donorid.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        donorid.addActionListener(new java.awt.event.ActionListener() {
+        email.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                donoridActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
+
+        secq.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        secq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secqActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("Verify");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        edemail.setForeground(new java.awt.Color(255, 0, 0));
+        edemail.setText("Email Address");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -222,37 +256,42 @@ public class PasswordRecovery extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(email)
+                            .addComponent(secq)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(donorid))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(edemail))
+                                .addGap(0, 45, Short.MAX_VALUE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(80, 80, 80))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(donorid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edemail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(secq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,34 +330,6 @@ public class PasswordRecovery extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
-    private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
-        // TODO add your handling code here:
-        String email=donorid.getText();
-        String secques=secq.getSelectedItem().toString();
-        String seca=secans.getText();
-        RegisterDO reg = register.selectRecoveryRecord(email);
-        if(reg!=null){
-            if(email.contains(reg.getEmail())){
-                String secqu=reg.getSecq();
-                if(secques.contains(secqu)&&seca.matches(reg.getSecans())){
-                    
-                    String id=reg.getDonorid();
-                    PassRecovery PassRecovery = new PassRecovery(id);
-                    PassRecovery.setVisible(true);
-                    this.setVisible(false);
-            }else{
-                    JOptionPane.showMessageDialog(null, "Verifying saASDDAS","Successful",JOptionPane.INFORMATION_MESSAGE);
-                }
-            
-            }
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Verifying succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-        }
-         
-         
-    }//GEN-LAST:event_submitMouseClicked
-
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
         new DonorLogin().setVisible(true);
@@ -330,11 +341,70 @@ public class PasswordRecovery extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void donoridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donoridActionPerformed
+    private boolean validation(){
+        boolean check=true;
+        String demail=email.getText();
+        RegisterDO reg = register.selectRecoveryRecord(demail);
+        if(demail.equals("")){
+            edemail.setText("Email Address field cannot be blank!!");
+            edemail.setVisible(true);
+            check=false;
+            
+        
+        }else if(!demail.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
+             //JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
+             edemail.setText("Invalid email format enter!!\nExample:abc123@gmail.com");
+             edemail.setVisible(true);
+             check=false;
+        }else if(reg==null){
+            edemail.setText("Email Address not found!!");
+            edemail.setVisible(true);
+            check=false;
+        }else{
+            edemail.setVisible(false);
+            check=true;
+        }
+        return check;
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String demail=email.getText();
+        RegisterDO reg = register.selectRecoveryRecord(demail);
 
-    }//GEN-LAST:event_donoridActionPerformed
+        if(validation()==true){
+            if(reg!=null){
+                secq.setText(reg.getSecq());
+            }
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void secqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secqActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_secqActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
+        // TODO add your handling code here:
+        String demail=email.getText();
+
+        String seca=secans.getText();
+        RegisterDO reg = register.selectRecoveryRecord(demail);
+        if(seca.equals(reg.getSecans())){
+
+            String id=reg.getDonorid();
+            PassRecovery PassRecovery = new PassRecovery(id);
+            PassRecovery.setVisible(true);
+            this.setVisible(false);
+
+        }
+
+    }//GEN-LAST:event_submitMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -378,8 +448,10 @@ public class PasswordRecovery extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField donorid;
+    private javax.swing.JLabel edemail;
+    private javax.swing.JTextField email;
     private javax.swing.ButtonGroup gender;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -396,7 +468,7 @@ public class PasswordRecovery extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea secans;
-    private javax.swing.JComboBox<String> secq;
+    private javax.swing.JTextField secq;
     private javax.swing.JLabel submit;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,6 @@ public class MaintainStaffControl {
         return staffDA.getRecord(StaffID);
     }
     
-    
     public void addRecord(Staff staff){
         staffDA.addRecord(staff);
     }
@@ -26,6 +25,9 @@ public class MaintainStaffControl {
             staffDA.updateRecord(staff);
     }
 
+        public Staff selectLastRecord(){
+            return staffDA.getLastRecord();
+    }
      
     
 }

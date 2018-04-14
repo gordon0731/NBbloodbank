@@ -25,6 +25,8 @@ public class MaintainBloodControl {
             bloodDA.updateRecord(blood);
     }
 
-     
+        public Blood selectLastRecord(){
+            return bloodDA.getLastRecord();
+    }
     
 }
