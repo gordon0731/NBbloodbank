@@ -17,8 +17,12 @@ public class StaffHome extends javax.swing.JFrame {
     /**
      * Creates new form Index
      */
-    public StaffHome() {
+    private String id;
+    
+  
+    public StaffHome(String id) {
         initComponents();
+        this.id=id;
     }
 
     /**
@@ -448,11 +452,13 @@ public class StaffHome extends javax.swing.JFrame {
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
+        new staffprofile(id).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        new StaffPasswordReset().setVisible(true);
+        new StaffPasswordReset(id).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
@@ -508,7 +514,7 @@ public class StaffHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StaffHome().setVisible(true);
+                //new StaffHome().setVisible(true);
             }
         });
     }

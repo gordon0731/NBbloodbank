@@ -24,6 +24,9 @@ public class MaintainStaffControl {
         public void updateRecord(Staff staff){
             staffDA.updateRecord(staff);
     }
+        public void updateResetRecord(Staff staff){
+            staffDA.updateResetRecord(staff);
+    }
 
         public Staff selectLastRecord(){
             return staffDA.getLastRecord();

@@ -11,17 +11,23 @@ package ui;
  */
 import domain.*;
 import java.awt.Color;
+import controller.*;
+import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
+    private MaintainStaffControl staffc;
     public Login() {
+        staffc=new MaintainStaffControl();
         initComponents();
         initialize();
+        estaffid.setVisible(false);
+        epassword.setVisible(false);
     }
     public void initialize(){
-        TextPrompt jTextPrompt1 = new TextPrompt("SF1001", did);
+        TextPrompt jTextPrompt1 = new TextPrompt("SF1001", staffid);
         jTextPrompt1.setForeground(Color.gray);
         
     }
@@ -46,11 +52,13 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        did = new javax.swing.JTextField();
+        staffid = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         login = new javax.swing.JLabel();
+        estaffid = new javax.swing.JLabel();
+        epassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,8 +187,8 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel5.setText("Staff ID");
 
-        did.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
-        did.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        staffid.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
+        staffid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setText("Password");
@@ -211,22 +219,34 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        estaffid.setForeground(new java.awt.Color(255, 0, 0));
+        estaffid.setText("Staff id");
+
+        epassword.setForeground(new java.awt.Color(255, 0, 0));
+        epassword.setText("password");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(epassword)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(staffid, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                    .addComponent(password)))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(did, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(password))))
+                        .addGap(120, 120, 120)
+                        .addComponent(estaffid)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -237,17 +257,21 @@ public class Login extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(89, 89, 89)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(did, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(estaffid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(epassword)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                     .addContainerGap(229, Short.MAX_VALUE)
@@ -292,10 +316,71 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
+    private boolean validation(){
+        boolean check=true;
+        String id=staffid.getText();
+        String pass=password.getText();
+        Staff staff = staffc.selectRecord(id);
+        if(id.isEmpty()){
+            check=false;
+            estaffid.setText("Staff ID field cannot be blank!!");
+            estaffid.setVisible(true);
+        }else if(id.length()!=6){
+            check=false;
+            estaffid.setText("Staff ID should not be more than or less than 6 character!!");
+            estaffid.setVisible(true);
+        }
+        else if(staff==null){
+            check=false;
+            estaffid.setText("Incorrect Staff ID entered!!");
+            estaffid.setVisible(true);
+        }else if(staff!=null){
+            check=true;
+            estaffid.setVisible(false);
+        }
+        if(pass.isEmpty()){
+            check=false;
+            epassword.setText("Password field cannot be blank!!");
+            epassword.setVisible(false);
+        }else if(!pass.contains(staff.getpassword())){
+            check=false;
+            epassword.setText("Incorrect password entered!!");
+            epassword.setVisible(false);
+        }else if(pass.contains(staff.getpassword())){
+            check=true;
+            epassword.setVisible(false);
+        }
+        return check;
+    }
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
         // TODO add your handling code here:
-        new StaffHome().setVisible(true);
-        this.setVisible(false);
+        String id=staffid.getText();
+        Staff staff = staffc.selectRecord(id);
+        String position=staff.getposition();
+        System.out.print(position);
+        char gender=staff.getGender();
+        String name=staff.getStaffName();
+        if(validation()==true){
+            if(position.contains("Nurse")||position.contains("Blood Bank Staff")){
+                 if(gender=='M'){
+                    JOptionPane.showMessageDialog(null, "Welcome Mr."+name,"Login successful",JOptionPane.INFORMATION_MESSAGE);
+                 }else if(gender=='F'){
+                    JOptionPane.showMessageDialog(null,"Welcome Ms"+name,"Login successful",JOptionPane.INFORMATION_MESSAGE);
+                }
+                new StaffHome(id).setVisible(true);
+                this.setVisible(false);
+            }else if(position.contains("Manager")){
+                if(gender=='M'){
+                    JOptionPane.showMessageDialog(null, "Welcome Mr."+name,"Login successful",JOptionPane.INFORMATION_MESSAGE);
+                 }else if(staff.getGender()=='F'){
+                    JOptionPane.showMessageDialog(null,"Welcome Ms"+name,"Login successful",JOptionPane.INFORMATION_MESSAGE);
+                }
+                new ManagerHome().setVisible(true);
+                this.setVisible(false);
+            }
+           
+        }
+        
     }//GEN-LAST:event_loginMouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
@@ -342,7 +427,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField did;
+    private javax.swing.JLabel epassword;
+    private javax.swing.JLabel estaffid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -358,5 +444,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel login;
     private javax.swing.JPasswordField password;
+    private javax.swing.JTextField staffid;
     // End of variables declaration//GEN-END:variables
 }

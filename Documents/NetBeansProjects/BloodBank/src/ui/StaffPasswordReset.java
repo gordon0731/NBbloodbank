@@ -6,6 +6,8 @@
 package ui;
 
 import javax.swing.JOptionPane;
+import domain.*;
+import controller.*;
 
 /**
  *
@@ -16,8 +18,14 @@ public class StaffPasswordReset extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public StaffPasswordReset() {
+    private String sid;
+    private MaintainStaffControl staff;
+    public StaffPasswordReset(String sid) {
+        staff=new MaintainStaffControl();
+        this.sid=sid;
         initComponents();
+        staffid.setText(sid);
+        
     }
 
     /**
@@ -39,21 +47,23 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        submit = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        dname = new javax.swing.JTextField();
+        staffid = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        p = new javax.swing.JPasswordField();
-        password1 = new javax.swing.JPasswordField();
         password = new javax.swing.JPasswordField();
+        password2 = new javax.swing.JPasswordField();
+        password1 = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
+        eepass = new javax.swing.JLabel();
+        epassword = new javax.swing.JLabel();
+        econpassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Go_Back_35px.png"))); // NOI18N
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -62,7 +72,6 @@ public class StaffPasswordReset extends javax.swing.JFrame {
                 jLabel12MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jPanel9.setBackground(new java.awt.Color(85, 65, 118));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +102,23 @@ public class StaffPasswordReset extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 300, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel12))
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel12)
+                .addGap(15, 15, 15)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jPanel2.setBackground(new java.awt.Color(122, 72, 221));
 
@@ -140,15 +165,15 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel9.setBackground(new java.awt.Color(51, 51, 255));
-        jLabel9.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Form_24px.png"))); // NOI18N
-        jLabel9.setText("Submit");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        submit.setBackground(new java.awt.Color(51, 51, 255));
+        submit.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        submit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Form_24px.png"))); // NOI18N
+        submit.setText("Submit");
+        submit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        submit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        submit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                submitMouseClicked(evt);
             }
         });
 
@@ -157,11 +182,11 @@ public class StaffPasswordReset extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        dname.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        dname.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        dname.addActionListener(new java.awt.event.ActionListener() {
+        staffid.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        staffid.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        staffid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dnameActionPerformed(evt);
+                staffidActionPerformed(evt);
             }
         });
 
@@ -171,9 +196,15 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel17.setText("New Password");
 
-        p.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pActionPerformed(evt);
+                passwordActionPerformed(evt);
+            }
+        });
+
+        password2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password2ActionPerformed(evt);
             }
         });
 
@@ -183,14 +214,17 @@ public class StaffPasswordReset extends javax.swing.JFrame {
             }
         });
 
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
-
         jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("Existing Password");
+
+        eepass.setForeground(new java.awt.Color(255, 0, 0));
+        eepass.setText("Password");
+
+        epassword.setForeground(new java.awt.Color(255, 0, 0));
+        epassword.setText("Password");
+
+        econpassword.setForeground(new java.awt.Color(255, 0, 0));
+        econpassword.setText("Confirm password");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -200,56 +234,76 @@ public class StaffPasswordReset extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(60, 60, 60)
-                                .addComponent(dname, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(19, 19, 19)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password1)
-                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(econpassword)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(password2)
+                                        .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                    .addComponent(epassword)
+                                    .addComponent(eepass))))))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(dname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(64, 64, 64)
+                        .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel17))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eepass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(epassword)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(econpassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
@@ -282,38 +336,102 @@ public class StaffPasswordReset extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-        new StaffHome().setVisible(true);
+        new StaffHome(sid).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel12MouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    private boolean validation(){
+        boolean check=true;
+        String id=staffid.getText();
+        String p=password1.getText();
+        String p1=password2.getText();
+        String p2=password2.getText();
+        Staff s = staff.selectRecord(id);
+        if(p.equals("")){
+            eepass.setText("Existing password field cannot be blank!!");
+            eepass.setVisible(true);
+            check=false;
+        }else if(p.equals(s.getpassword())){
+            eepass.setVisible(false);
+            check=true;
+        }else if(!p.equals(s.getpassword())){
+            eepass.setText("Existing password incorrect!!\nPlease try again");
+            eepass.setVisible(true);
+            check=false;
+        }
+        if(p1.equals("")){
+            epassword.setText("Password field cannot be blank!!!");
+            epassword.setVisible(true);
+            check=false;
+        }else if(p1.length()>12||p1.length()<8){
+            epassword.setText("Password cannot be less than 8  or more than 12 character!!");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password cannot be less than 8  or more than 12 character!!","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }
+        else if(!p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            epassword.setText("Password must contains at least 1 digit,1 lower case and 1 upper case");
+            epassword.setVisible(true);
+            //JOptionPane.showMessageDialog(null, "Password must contains at least one digit,one lower alpha character and one upper alpha character","Invalid format enter",JOptionPane.ERROR_MESSAGE);
+            check=false;
+        }else if(p1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,12}$")){
+            check=true;
+            epassword.setVisible(false);
+        }
+        if(p2.isEmpty()){
+            econpassword.setText("Confirm password field cannot be blank!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(!p2.equals(p1)){
+            econpassword.setText("Password and retype not identical!!");
+            econpassword.setVisible(true);
+            check=false;
+        }else if(p2.equals(p1)){
+            econpassword.setVisible(false);
+            check=true;
+        }
+        
+        return check;
+    }
+    private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(null, "Password reset Successfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-         new StaffHome().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel9MouseClicked
+        String id=staffid.getText();
+        String p=password1.getText();
+        String p1=password2.getText();
+        String p2=password2.getText();
+        Staff s = staff.selectRecord(id);
+        if(validation()==true){
+            JOptionPane.showConfirmDialog(null, "Are you sure want to reset the password?","Yes or No",JOptionPane.YES_NO_OPTION);
+            s= new Staff(p1);
+            staff.updateResetRecord(s);
+            JOptionPane.showMessageDialog(null, "Password reset Successfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+            new StaffHome(sid).setVisible(true);
+            this.setVisible(false);
+        }
+         
+    }//GEN-LAST:event_submitMouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
-        new StaffPasswordReset().setVisible(true);
-        this.setVisible(false);
+
+        this.setVisible(true);
     }//GEN-LAST:event_jPanel9MouseClicked
 
-    private void dnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnameActionPerformed
+    private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dnameActionPerformed
-
-    private void pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pActionPerformed
-
-    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password1ActionPerformed
+    }//GEN-LAST:event_staffidActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password2ActionPerformed
+
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,13 +494,15 @@ public class StaffPasswordReset extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StaffPasswordReset().setVisible(true);
+                //new StaffPasswordReset().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField dname;
+    private javax.swing.JLabel econpassword;
+    private javax.swing.JLabel eepass;
+    private javax.swing.JLabel epassword;
     private javax.swing.ButtonGroup gender;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -393,14 +513,15 @@ public class StaffPasswordReset extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField p;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField password1;
+    private javax.swing.JPasswordField password2;
+    private javax.swing.JTextField staffid;
+    private javax.swing.JLabel submit;
     // End of variables declaration//GEN-END:variables
 }

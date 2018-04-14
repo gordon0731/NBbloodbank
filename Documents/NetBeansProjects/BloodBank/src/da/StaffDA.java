@@ -5,7 +5,7 @@ import java.sql.*;
 import javax.swing.*;
 
 public class StaffDA {
-    private String host = "jdbc:derby://localhost:1527/FYP1";
+    private String host = "jdbc:derby://localhost:1527/BloodBank";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "Staff";
@@ -45,7 +45,7 @@ public class StaffDA {
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
-                staff = new Staff(StaffID, rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getInt("Age"), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
+                staff = new Staff(StaffID, rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getInt("Age"), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("Position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -117,6 +117,21 @@ public void deleteRecord(Staff staff){
         
 
 }
+    public void updateResetRecord(Staff staff){
+        String insertStr = "UPDATE " + tableName + " SET Password = ? WHERE STAFFID = ?"; 
+       try {
+                stmt = conn.prepareStatement(insertStr);
+                    
+                stmt.setString(2, staff.getStaffID());
+                stmt.setString(1, staff.getpassword());
+                    
+                    
+                    stmt.executeUpdate();
+            }
+       catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+    }
 
     
     private void createConnection() {
@@ -139,7 +154,7 @@ public void deleteRecord(Staff staff){
     
     public static void main(String[] args) {
         StaffDA da = new StaffDA();
-        Staff staff = da.getRecord("IA");
+        Staff staff = da.getRecord("SF0003");
         System.out.println(staff);
     }
 }

@@ -263,18 +263,27 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel8" min="-2" pref="115" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel6" min="-2" pref="115" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="jLabel8" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel6" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" pref="115" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="epassword" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="staffid" pref="189" max="32767" attributes="0"/>
+                                      <Component id="password" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="did" pref="189" max="32767" attributes="0"/>
-                              <Component id="password" max="32767" attributes="0"/>
-                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="estaffid" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -291,19 +300,23 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="did" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="staffid" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="password" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="estaffid" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <Component id="password" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="epassword" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="157" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -324,7 +337,7 @@
             <Property name="text" type="java.lang.String" value="Staff ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="did">
+        <Component class="javax.swing.JTextField" name="staffid">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Fax" size="18" style="0"/>
@@ -402,6 +415,22 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="estaffid">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Staff id"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="epassword">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="password"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
