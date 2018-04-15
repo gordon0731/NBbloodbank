@@ -61,7 +61,7 @@ public class RetrieveStaff extends javax.swing.JFrame {
             ResultSet rs= stmt.executeQuery();
             Staff staff;
             while(rs.next()){
-                staff = new Staff(rs.getString("StaffID"), rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getInt("Age"), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
+                staff = new Staff(rs.getString("StaffID"), rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
                 sList.add(staff);
             }
         }
@@ -74,16 +74,15 @@ public class RetrieveStaff extends javax.swing.JFrame {
     public void show_staff(){
         ArrayList<Staff> list= sList();
         DefaultTableModel model= (DefaultTableModel)jtable.getModel();
-        Object[] row= new Object[8];
+        Object[] row= new Object[7];
         for(int i=0; i<list.size(); i++){
             row[0]= list.get(i).getStaffID();
             row[1]= list.get(i).getStaffName();
             row[2]= list.get(i).getStaffNRIC();
             row[3]= list.get(i).getGender();
-            row[4]= list.get(i).getAge();
-            row[5]= list.get(i).getAddress();
-            row[6]= list.get(i).getContactNo();
-            row[7]= list.get(i).getEmail();
+            row[4]= list.get(i).getAddress();
+            row[5]= list.get(i).getContactNo();
+            row[6]= list.get(i).getEmail();
             //row[8]= list.get(i).getposition();
             model.addRow(row);
         }
@@ -340,11 +339,11 @@ public class RetrieveStaff extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "IC", "Gender", "Age", "Address", "ContactNo", "Email"
+                "ID", "Name", "IC", "Gender", "Address", "ContactNo", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

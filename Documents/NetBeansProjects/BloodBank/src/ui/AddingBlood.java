@@ -28,7 +28,7 @@ public class AddingBlood extends javax.swing.JFrame {
         initComponents();
         increament();
         
-        jButton1.addActionListener(new AddListener());
+        //jButton1.addActionListener(new AddListener());
     }
         public void increament(){
             Blood blood = bloodControl.selectLastRecord();
@@ -41,39 +41,7 @@ public class AddingBlood extends javax.swing.JFrame {
             jtfid.setText(newID);
         
     }
-    private class AddListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-             
-            // link to progControl.selectRecord
-      Blood blood = bloodControl.selectRecord(jtfid.getText());
-     
-            if (blood != null) {
-                // show dialog message "programme code already exist"
-                
-                JOptionPane.showMessageDialog(null, "Blood already exist.", "RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
-                
-                
-            } else {
-                // use constuctor in Programme
-                String type= (String)jComboBox1.getSelectedItem();
-                blood = new Blood(jtfid.getText(), type, Integer.parseInt(jtfquantity.getText()));
-             bloodControl.addRecord(blood);
-                 // call addRecord in progControl
-
-             
-                // show message dialog "New programme added"
-              JOptionPane.showMessageDialog(null, "New Blood Added", "RECORD ADDED",JOptionPane.INFORMATION_MESSAGE);
-              
-            }
- 
-        }
-        
-        
-        
-        
-    }
+    
         
         
         
@@ -307,6 +275,11 @@ public class AddingBlood extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -451,6 +424,29 @@ public class AddingBlood extends javax.swing.JFrame {
         new Index().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Blood blood = bloodControl.selectRecord(jtfid.getText());
+     
+            if (blood != null) {
+                // show dialog message "programme code already exist"
+                
+                JOptionPane.showMessageDialog(null, "Blood already exist.", "RECORD ALREADY EXIST",JOptionPane.ERROR_MESSAGE);
+                
+                
+            } else {
+                // use constuctor in Programme
+                String type= (String)jComboBox1.getSelectedItem();
+                blood = new Blood(jtfid.getText(), type, Integer.parseInt(jtfquantity.getText()));
+             bloodControl.addRecord(blood);
+                 // call addRecord in progControl
+
+             
+                // show message dialog "New programme added"
+              JOptionPane.showMessageDialog(null, "Record ADDED BITCH!!", "RECORD ADDED",JOptionPane.INFORMATION_MESSAGE);
+              
+            }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

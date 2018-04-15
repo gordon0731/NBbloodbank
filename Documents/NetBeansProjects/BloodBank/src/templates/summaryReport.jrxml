@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="28779bec-ec41-43c5-908b-c9d856043aec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="70"/>
+	<parameter name="month" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    
+     BOOKING."DATE" AS BOOKING_DATE,
+     BOOKING."DONORID" AS BOOKING_DONORID,
+     DONOR."BLOODTYPE" AS DONOR_BLOODTYPE,
+     BOOKING."BOOKINGID" AS BOOKING_BOOKINGID
+FROM
+     "BOOKING" BOOKING,
+     "DONOR" DONOR,
+     "STAFF" STAFF
+WHERE
+     BOOKING."DONORID" = DONOR.DonorID
+ AND BOOKING."STAFFID" = STAFF.StaffID
+ AND BOOKING."BOOKINGSTATUS" = 'Successful'
+ AND month(BOOKING."DATE") = $P{month}]]>
+	</queryString>
+	<field name="BOOKING_DATE" class="java.sql.Date"/>
+	<field name="BOOKING_DONORID" class="java.lang.String"/>
+	<field name="DONOR_BLOODTYPE" class="java.lang.String"/>
+	<field name="BOOKING_BOOKINGID" class="java.lang.String"/>
+	<sortField name="BOOKING_DATE"/>
+	<variable name="total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{BOOKING_BOOKINGID}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="cheebin">
+		<groupExpression><![CDATA[$F{BOOKING_DATE}]]></groupExpression>
+		<groupHeader>
+			<band height="41">
+				<staticText>
+					<reportElement x="0" y="23" width="48" height="18" uuid="2cda156c-9ad5-4b06-8efd-ce5ea853b077"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="48" y="23" width="88" height="18" uuid="7e53a8bd-c85d-4c97-b6b5-40e72e5044b8"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{BOOKING_DATE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="77" forecolor="#FFFFFF" backcolor="#362159" uuid="e1fca88d-4657-4abc-9cd2-10c058a361b0"/>
+				<textElement textAlignment="Center">
+					<font size="32"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="8" width="217" height="59" forecolor="#FFFFFF" uuid="14a76a61-ab41-4604-a570-9a379ecb71c7"/>
+				<textElement>
+					<font fontName="Segoe UI" size="40"/>
+				</textElement>
+				<text><![CDATA[Cambridge]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="30" width="366" height="37" forecolor="#FFFFFF" uuid="8bb4eeb1-d19a-41f4-bfa4-6bd0a8bce84b"/>
+				<textElement>
+					<font fontName="Segoe UI" size="24"/>
+				</textElement>
+				<text><![CDATA[Blood Bank Management System]]></text>
+			</staticText>
+			<image>
+				<reportElement x="713" y="8" width="64" height="64" uuid="83641ff9-34a7-44fa-8489-c055df7590ab"/>
+				<imageExpression><![CDATA["C:\\Users\\LO\\Desktop\\blood.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="35" forecolor="#FFFFFF" backcolor="#554176" uuid="31e36ee9-0404-44c6-9f26-f56f13589f98"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[March Month Booking Report (Summary Report)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="36" backcolor="#7A16E3" uuid="9bd05236-c65d-4ceb-8793-a98658080155"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="2" width="88" height="34" forecolor="#FFFFFF" uuid="869808a3-330b-4022-9a7e-eb9dbacf35f1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<text><![CDATA[Booking ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="3" width="100" height="33" forecolor="#FFFFFF" uuid="ef95b161-651b-4052-8d19-d12ef168853a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<text><![CDATA[Donor ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="648" y="2" width="112" height="32" forecolor="#FFFFFF" uuid="2786edf2-341b-4b02-8b2d-5c6cb2aa41ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<text><![CDATA[Blood Type]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="88" height="28" uuid="b1f721bc-182b-42a2-8f49-43f00c01af4f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOKING_BOOKINGID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="100" height="28" uuid="c21b5e55-74d0-40f9-bfd2-d02c8bd39665"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BOOKING_DONORID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="648" y="0" width="112" height="28" uuid="6a669412-45dd-45cf-91f1-45eaf6081482"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DONOR_BLOODTYPE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="333" y="34" width="80" height="20" uuid="fb1c7c7d-4cd0-47ce-89a7-d6c270de8d56"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="413" y="34" width="50" height="20" uuid="5426098f-ba3e-4762-9f34-eb982caf862a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="678" y="2" width="17" height="20" uuid="d6527072-dc7f-4316-a306-2e821a410ac0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="648" y="2" width="30" height="20" uuid="37c3a1b6-f3c7-4a87-a90f-eaa688688153"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="695" y="2" width="47" height="20" uuid="1b1dbde2-8c9c-4e5e-ac17-09cdacdc93e5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Bookings]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

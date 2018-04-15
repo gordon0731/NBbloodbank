@@ -9,7 +9,6 @@ public class Staff implements Serializable {
     private String StaffName;
     private String StaffNRIC;
     private char Gender;
-    private int Age;
     private String Address;
     private String ContactNo;
     private String Email;
@@ -38,12 +37,11 @@ public class Staff implements Serializable {
     }
     
 
-    public Staff(String StaffID, String StaffName, String StaffNRIC, char Gender, int Age, String Address, String ContactNo, String Email, String position, String password, String secQuestion, String secAnswer) {
+    public Staff(String StaffID, String StaffName, String StaffNRIC, char Gender, String Address, String ContactNo, String Email, String position, String password, String secQuestion, String secAnswer) {
         this.StaffID = StaffID;
         this.StaffName = StaffName;
         this.StaffNRIC = StaffNRIC;
         this.Gender = Gender;
-        this.Age = Age;
         this.Address = Address;
         this.ContactNo = ContactNo;
         this.Email = Email;
@@ -72,10 +70,6 @@ public class Staff implements Serializable {
 
     public char getGender() {
         return Gender;
-    }
-
-    public int getAge() {
-        return Age;
     }
 
     public String getAddress() {
@@ -121,11 +115,6 @@ public class Staff implements Serializable {
     public void setGender(char Gender) {
         this.Gender = Gender;
     }
-
-    public void setAge(int Age) {
-        this.Age = Age;
-    }
-
     public void setAddress(String Address) {
         this.Address = Address;
     }

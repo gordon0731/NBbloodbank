@@ -494,8 +494,8 @@ public class AddBooking extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Thank you for your appointment","Booking Status",JOptionPane.INFORMATION_MESSAGE);
            } else if(validation()==false){
                JOptionPane.showMessageDialog(null, "ERROR");
-           new HomePage(did).setVisible(true);
-                   this.setVisible(false);
+               new HomePage(did).setVisible(true);
+               this.setVisible(false);
            }
                
               

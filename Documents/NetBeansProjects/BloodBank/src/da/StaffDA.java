@@ -64,7 +64,7 @@ public class StaffDA {
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
-                staff = new Staff(StaffID, rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getInt("Age"), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("Position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
+                staff = new Staff(StaffID, rs.getString("StaffName"), rs.getString("StaffNRIC"), rs.getString("Gender").charAt(0), rs.getString("Address"), rs.getString("ContactNo"), rs.getString("Email"), rs.getString("Position"), rs.getString("password"), rs.getString("secQuestion"), rs.getString("secAnswer"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -74,22 +74,21 @@ public class StaffDA {
     
         
      public void addRecord(Staff staff) {
-       String insertStr = "INSERT INTO " + tableName + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+       String insertStr = "INSERT INTO " + tableName + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
               //insert a new table row refer chap 5 slides 28, change .getText to getCode refer programme.java in domain
                 stmt = conn.prepareStatement(insertStr);
                 stmt.setString(1, staff.getStaffID());
-                stmt.setString(12, staff.getStaffName());
+                stmt.setString(11, staff.getStaffName());
                 stmt.setString(2, staff.getStaffNRIC());
                 stmt.setString(3, String.valueOf(staff.getGender()));
-                stmt.setInt(4, staff.getAge());
-                stmt.setString(5, staff.getAddress());
-                stmt.setString(6, staff.getContactNo());
-                stmt.setString(7, staff.getEmail());
-                stmt.setString(8, staff.getposition());
-                stmt.setString(9, staff.getpassword());
-                stmt.setString(10, staff.getsecQuestion());
-                stmt.setString(11, staff.getsecAnswer());
+                stmt.setString(4, staff.getAddress());
+                stmt.setString(5, staff.getContactNo());
+                stmt.setString(6, staff.getEmail());
+                stmt.setString(7, staff.getposition());
+                stmt.setString(8, staff.getpassword());
+                stmt.setString(9, staff.getsecQuestion());
+                stmt.setString(10, staff.getsecAnswer());
                 stmt.executeUpdate();
               
           
@@ -115,19 +114,18 @@ public void deleteRecord(Staff staff){
         
                 try{
                     
-                    stmt = conn.prepareStatement("UPDATE Staff SET StaffName = ?, StaffNRIC = ?, Gender = ?, Age = ?, Address = ?, ContactNo = ?, Email = ?, Position = ?, Password = ?, SecQuestion = ?, SecAnswer = ? WHERE StaffID = ?");
-                    stmt.setString(1, staff.getStaffID());
-                    stmt.setString(12, staff.getStaffName());
+                    stmt = conn.prepareStatement("UPDATE Staff SET StaffName = ?, StaffNRIC = ?, Gender = ?, Address = ?, ContactNo = ?, Email = ?, Position = ?, Password = ?, SecQuestion = ?, SecAnswer = ? WHERE StaffID = ?");
+                    stmt.setString(11, staff.getStaffID());
+                    stmt.setString(1, staff.getStaffName());
                     stmt.setString(2, staff.getStaffNRIC());
                     stmt.setString(3, String.valueOf(staff.getGender()));
-                    stmt.setInt(4, staff.getAge());
-                    stmt.setString(5, staff.getAddress());
-                    stmt.setString(6, staff.getContactNo());
-                    stmt.setString(7, staff.getEmail());
-                    stmt.setString(8, staff.getposition());
-                    stmt.setString(9, staff.getpassword());
-                    stmt.setString(10, staff.getsecQuestion());
-                    stmt.setString(11, staff.getsecAnswer());
+                    stmt.setString(4, staff.getAddress());
+                    stmt.setString(5, staff.getContactNo());
+                    stmt.setString(6, staff.getEmail());
+                    stmt.setString(7, staff.getposition());
+                    stmt.setString(8, staff.getpassword());
+                    stmt.setString(9, staff.getsecQuestion());
+                    stmt.setString(10, staff.getsecAnswer());
                     stmt.executeUpdate();
                 }
                 catch(SQLException ex) {

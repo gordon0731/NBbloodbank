@@ -31,34 +31,15 @@ public class DeletingStaff1 extends javax.swing.JFrame {
             jtfname.setText(staff.getStaffName());
             jtfic.setText(staff.getStaffNRIC());
             jtfgender.setText(String.valueOf(staff.getGender()));
-            jtfage.setText(staff.getAge()+"");
             jta.setText(staff.getAddress());
             jtfno.setText(staff.getContactNo());
             jtfemail.setText(staff.getEmail());
             jtfposition.setText(staff.getposition());
             
         }
-        jButton1.addActionListener(new DeleteListener());
+        
     }
     
-    private class DeleteListener implements ActionListener {
-          @Override
-          public void actionPerformed(ActionEvent e){
-              
-              Staff staff = staffControl.selectRecord(jtfid.getText());
-              if(staff != null){
-                       int yesno = Conform();
-                        if (yesno == 0){
-                       
-                       staffControl.deleteRecord(staff);
-                       clearText();
-                       JOptionPane.showMessageDialog(null,"Delete Successfully","Sucessful",JOptionPane.INFORMATION_MESSAGE);
-                        }}else{
-                  JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND ",JOptionPane.INFORMATION_MESSAGE);
-                 
-              }
-              }
-       }
         public int Conform(){
           int yesno = JOptionPane.showConfirmDialog(null,"Are you sure want to delete record", "DELETE RECORD ",JOptionPane.INFORMATION_MESSAGE);
           return yesno;
@@ -68,7 +49,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
           jtfname.setText(null);
           jtfic.setText(null);
           jtfgender.setText(null);
-          jtfage.setText(null);
           jta.setText(null);
           jtfno.setText(null);
           jtfemail.setText(null);
@@ -104,13 +84,11 @@ public class DeletingStaff1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jtfid = new javax.swing.JTextField();
         jtfname = new javax.swing.JTextField();
         jtfic = new javax.swing.JTextField();
         jtfgender = new javax.swing.JTextField();
-        jtfage = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jta = new javax.swing.JTextArea();
         jtfno = new javax.swing.JTextField();
@@ -313,9 +291,14 @@ public class DeletingStaff1 extends javax.swing.JFrame {
         );
 
         jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-checked-26.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -339,9 +322,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText(" Gender");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText(" Age");
-
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText(" Address");
 
@@ -357,8 +337,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
         jtfic.setEditable(false);
 
         jtfgender.setEditable(false);
-
-        jtfage.setEditable(false);
 
         jta.setEditable(false);
         jta.setColumns(20);
@@ -402,7 +380,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
@@ -412,13 +389,10 @@ public class DeletingStaff1 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jtfemail, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfno, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jtfic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addComponent(jtfname, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfgender)
-                                    .addComponent(jtfage, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                                .addComponent(jtfid, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jtfic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(jtfname, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfgender, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfid, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                             .addComponent(jtfposition))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -444,11 +418,7 @@ public class DeletingStaff1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfgender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -506,6 +476,21 @@ public class DeletingStaff1 extends javax.swing.JFrame {
     private void jtfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfidActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Staff staff = staffControl.selectRecord(jtfid.getText());
+              if(staff != null){
+                       int yesno = Conform();
+                        if (yesno == 0){
+                       
+                       staffControl.deleteRecord(staff);
+                       clearText();
+                       JOptionPane.showMessageDialog(null,"Delete Successfully","Sucessful",JOptionPane.INFORMATION_MESSAGE);
+                        }}else{
+                  JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND ",JOptionPane.INFORMATION_MESSAGE);
+                 
+              }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -589,7 +574,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -600,7 +584,6 @@ public class DeletingStaff1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jta;
-    private javax.swing.JTextField jtfage;
     private javax.swing.JTextField jtfemail;
     private javax.swing.JTextField jtfgender;
     private javax.swing.JTextField jtfic;

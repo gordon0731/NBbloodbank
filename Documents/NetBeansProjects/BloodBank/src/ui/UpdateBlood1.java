@@ -33,29 +33,9 @@ public class UpdateBlood1 extends javax.swing.JFrame {
             jtftype.setText(blood.getBloodType());
             jtfquantity.setText(blood.getBloodQuantity()+"");
         }
-        jButton1.addActionListener(new UpdateListener());
     }
     
-    private class UpdateListener implements ActionListener{
-              @Override
-              public void actionPerformed(ActionEvent e){
-                  Blood blood = bloodControl.selectRecord(jtfid.getText());
-                  if(blood!=null){
-                      //int quantity= Integer.parseInt(jtfquantity.getText());
-                      //String type= (String)jComboBox1.getSelectedItem();
-                      blood.setBloodType(jtftype.getText());
-                      blood.setBloodQuantity(Integer.parseInt(jtfquantity.getText()));
-                      
-                
-                     
-                      bloodControl.updateRecord(blood);
-                      
-                      JOptionPane.showMessageDialog(null,"Update Succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-                  }else{
-                      JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND",JOptionPane.INFORMATION_MESSAGE);
-                  }
-              }
-        }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -280,6 +260,11 @@ public class UpdateBlood1 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -357,9 +342,7 @@ public class UpdateBlood1 extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,6 +384,24 @@ public class UpdateBlood1 extends javax.swing.JFrame {
         new UpdateBlood().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Blood blood = bloodControl.selectRecord(jtfid.getText());
+                  if(blood!=null){
+                      //int quantity= Integer.parseInt(jtfquantity.getText());
+                      //String type= (String)jComboBox1.getSelectedItem();
+                      blood.setBloodType(jtftype.getText());
+                      blood.setBloodQuantity(Integer.parseInt(jtfquantity.getText()));
+                      
+                
+                     
+                      bloodControl.updateRecord(blood);
+                      
+                      JOptionPane.showMessageDialog(null,"Update Succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+                  }else{
+                      JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND",JOptionPane.INFORMATION_MESSAGE);
+                  }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -2,9 +2,10 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */   
 package ui;
 
+import ui.fordonor.*;
 import controller.MaintainStaffControl;
 import da.StaffDA;
 import domain.Staff;
@@ -24,25 +25,38 @@ public class AddingStaff extends javax.swing.JFrame {
     public AddingStaff() {
         staffControl = new MaintainStaffControl();
         initComponents();
+
         increament();
+        //jButton1.addActionListener(new AddListener());
+        jlblname.setVisible(false);
+        jlblic.setVisible(false);
+        jlblgender.setVisible(false);
+        jlbladdress.setVisible(false);
+        jlblno.setVisible(false);
+        jlblemail.setVisible(false);
+        jlblposition.setVisible(false);
+        jlblpassword.setVisible(false);
+        jlblsecq.setVisible(false);
+        jlblseca.setVisible(false);
         
-        jButton1.addActionListener(new AddListener());
+        
         
     }
     
     public void increament(){
             Staff staff = staffControl.selectLastRecord();
  
-            String bloodID = staff.getStaffID();
-            String code = bloodID.substring(0, 2);
-            int numInc = Integer.parseInt(bloodID.substring(2, 6)) + 1;
+            String staffID = staff.getStaffID();
+            System.out.println(staffID);
+            String code = staffID.substring(0, 2);
+            int numInc = Integer.parseInt(staffID.substring(2, 6)) + 1;
             String newID = code + String.format("%04d", numInc);
         
             jtfid.setText(newID);
         
     }
     
-    private class AddListener implements ActionListener {
+    /*private class AddListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -60,7 +74,7 @@ public class AddingStaff extends javax.swing.JFrame {
                 // use constuctor in Programme
              String gender = (String)jComboBox1.getSelectedItem();  
              String position = (String)jComboBox2.getSelectedItem();
-             staff = new Staff(jtfid.getText(), jtfname.getText(), jtfic.getText(), gender.charAt(0), Integer.parseInt(jtfage.getText()), jTextArea1.getText(), jtfno.getText(), jtfemail.getText(), position, jtfpassword.getText(), jtfsecq.getText(), jtfseca.getText());
+             staff = new Staff(jtfid.getText(), jtfname.getText(), jtfic.getText(), gender.charAt(0), jTextArea1.getText(), jtfno.getText(), jtfemail.getText(), position, jtfpassword.getText(), jtfsecq.getText(), jtfseca.getText());
              staffControl.addRecord(staff);
                  // call addRecord in progControl
 
@@ -71,7 +85,7 @@ public class AddingStaff extends javax.swing.JFrame {
             }
 
         }
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,7 +112,6 @@ public class AddingStaff extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -107,7 +120,6 @@ public class AddingStaff extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jtfage = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -122,6 +134,16 @@ public class AddingStaff extends javax.swing.JFrame {
         jtfemail = new javax.swing.JTextField();
         jtfno = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jlblname = new javax.swing.JLabel();
+        jlblic = new javax.swing.JLabel();
+        jlbladdress = new javax.swing.JLabel();
+        jlblno = new javax.swing.JLabel();
+        jlblemail = new javax.swing.JLabel();
+        jlblpassword = new javax.swing.JLabel();
+        jlblsecq = new javax.swing.JLabel();
+        jlblseca = new javax.swing.JLabel();
+        jlblgender = new javax.swing.JLabel();
+        jlblposition = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -320,9 +342,6 @@ public class AddingStaff extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText(" Gender");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel9.setText(" Age");
-
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText(" Address");
 
@@ -347,6 +366,11 @@ public class AddingStaff extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -378,6 +402,46 @@ public class AddingStaff extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nurse", "Blood Bank Staff", "Manager", "HR Manager" }));
 
+        jlblname.setBackground(new java.awt.Color(255, 255, 255));
+        jlblname.setForeground(new java.awt.Color(255, 0, 0));
+        jlblname.setText("Name cannot be empty !!");
+
+        jlblic.setBackground(new java.awt.Color(255, 255, 255));
+        jlblic.setForeground(new java.awt.Color(255, 0, 0));
+        jlblic.setText("IC cannot be empty !!");
+
+        jlbladdress.setBackground(new java.awt.Color(255, 255, 255));
+        jlbladdress.setForeground(new java.awt.Color(255, 0, 0));
+        jlbladdress.setText("Address cannot be empty !!");
+
+        jlblno.setBackground(new java.awt.Color(255, 255, 255));
+        jlblno.setForeground(new java.awt.Color(255, 0, 0));
+        jlblno.setText("Contact No cannot be empty !!");
+
+        jlblemail.setBackground(new java.awt.Color(255, 255, 255));
+        jlblemail.setForeground(new java.awt.Color(255, 0, 0));
+        jlblemail.setText("Email cannot be empty !!");
+
+        jlblpassword.setBackground(new java.awt.Color(255, 255, 255));
+        jlblpassword.setForeground(new java.awt.Color(255, 0, 0));
+        jlblpassword.setText("Password cannot be empty !!");
+
+        jlblsecq.setBackground(new java.awt.Color(255, 255, 255));
+        jlblsecq.setForeground(new java.awt.Color(255, 0, 0));
+        jlblsecq.setText("Security Question cannot be empty !!");
+
+        jlblseca.setBackground(new java.awt.Color(255, 255, 255));
+        jlblseca.setForeground(new java.awt.Color(255, 0, 0));
+        jlblseca.setText("Security Answer cannot be empty !!");
+
+        jlblgender.setBackground(new java.awt.Color(255, 255, 255));
+        jlblgender.setForeground(new java.awt.Color(255, 0, 0));
+        jlblgender.setText("Gender cannot be empty !!");
+
+        jlblposition.setBackground(new java.awt.Color(255, 255, 255));
+        jlblposition.setForeground(new java.awt.Color(255, 0, 0));
+        jlblposition.setText("Position cannot be empty !!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -390,51 +454,61 @@ public class AddingStaff extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(177, 177, 177))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(175, 175, 175))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblsecq, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfid)
+                                .addComponent(jtfname)
+                                .addComponent(jtfic)
+                                .addComponent(jScrollPane1)
+                                .addComponent(jtfno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfemail))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlblpassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlbladdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblno, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(jlblemail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblgender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlblposition, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfsecq, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                    .addComponent(jtfpassword)
-                                    .addComponent(jtfseca)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(113, 113, 113)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtfid)
-                                        .addComponent(jtfname)
-                                        .addComponent(jtfic)
-                                        .addComponent(jtfage)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(jtfno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtfemail)))))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfsecq, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(jtfpassword)
+                            .addComponent(jtfseca))
+                        .addGap(41, 41, 41)
+                        .addComponent(jlblseca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -449,47 +523,62 @@ public class AddingStaff extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlblgender, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jlbladdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblemail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2)
+                    .addComponent(jlblposition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfsecq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfseca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblsecq, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfsecq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblseca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfseca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -532,6 +621,136 @@ public class AddingStaff extends javax.swing.JFrame {
         new Index().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+     private boolean validateIt() {
+        
+        boolean check = true;
+
+        //String gender= (String)jComboBox1.getSelectedItem 
+        //String position= (String)jComboBox2.getSelectedItem();
+        
+        String name=jtfname.getText();
+        String ic=jtfic.getText();
+        //String gender=(String.valueOf(jComboBox1.getSelectedItem()));
+        String address=jTextArea1.getText();
+        String no= jtfno.getText();
+        String email= jtfemail.getText();
+        //String position= jComboBox2.getSelectedItem().toString();
+        String password= jtfpassword.getText();
+        String secq= jtfsecq.getText();
+        String seca= jtfseca.getText();
+        
+        
+        
+       if(name.equals("")){
+            jlblname.setVisible(true);
+            check=false;
+        }else if(!name.equals("")){
+            check=true;
+            jlblname.setVisible(false);
+        }
+        if(ic.equals("")){
+            jlblic.setText("NRIC field cannot be blank!!");
+            jlblic.setVisible(true);
+            check=false;
+        }else if(ic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
+            check=true;
+            jlblic.setVisible(false);
+        }else if(!ic.matches("^\\d{6}\\-\\d{2}\\-\\d{4}$")){
+            //JOptionPane.showMessageDialog(null, "Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx","ERROR",JOptionPane.ERROR_MESSAGE);
+            jlblic.setText("Invalid NRIC format enter!!\nExample:xxxxxx-xx-xxxx");
+            jlblic.setVisible(true);
+            check=false;
+        }
+        /*if(gender==""){
+            jlblgender.setVisible(true);
+            check=false;
+        }else{
+            check=true;
+        }*/
+        if(address.equals("")){
+            jlbladdress.setVisible(true);
+            check=false;
+            
+         }else if(!address.equals("")){
+             jlbladdress.setVisible(false);
+             check=true;
+         }
+        if(no.equals("")){
+            jlblno.setText("Contact Number field cannot be blank!!");
+            jlblno.setVisible(true);
+            check=false;
+            
+        }else if(no.matches("([0]){1}([1]){1}([0-9]){1}-([0-9]){7}")){
+            jlblno.setVisible(false);
+            check=true;
+        }else if(!no.matches("([0]){1}([1]){1}([0-9]){1}-([0-9]){7}")){
+            //JOptionPane.showMessageDialog(null, "Invalid Contact Number format enter!!\nExample:012-3456789","ERROR",JOptionPane.ERROR_MESSAGE);
+            jlblno.setText("Invalid Contact Number format enter!!\nExample:012-3456789");
+            jlblno.setVisible(true);
+            check=false;
+        }
+        if(email.equals("")){
+            jlblemail.setText("Email Address field cannot be blank!!");
+            jlblemail.setVisible(true);
+            check=false;
+            
+        }else if(email.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
+            jlblemail.setVisible(false);
+                check=true;
+        }else if(!email.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")){
+             //JOptionPane.showMessageDialog(null, "Invalid email format enter!!\nExample:abc123@gmail.com","ERROR",JOptionPane.ERROR_MESSAGE);
+             jtfemail.setText("Invalid email format enter!!\nExample:abc123@gmail.com");
+             jtfemail.setVisible(true);
+             check=false;
+        }
+        /*if(position.equals("")){
+            jlblgender.setVisible(true);
+            check=false;
+        }*/
+        if(password.equals("")){
+            jlblpassword.setVisible(true);
+            check=false;
+        }
+        if(secq.equals("")){
+            jlblsecq.setVisible(true);
+            check=false;
+        }
+        if(seca.equals("")){
+            jlblseca.setVisible(true);
+            check=false;
+        }
+        return check;
+    }
+    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        //String gender= (String)jComboBox1.getSelectedItem();
+        //String position= (String)jComboBox2.getSelectedItem();
+        
+        
+        String id= jtfid.getText();
+        String name= jtfname.getText();
+        String ic= jtfic.getText();
+        String gender= (String)jComboBox1.getSelectedItem();
+        String address= jTextArea1.getText();
+        String no= jtfno.getText();
+        String email= jtfemail.getText();
+        String position= (String)jComboBox2.getSelectedItem();
+        String password= jtfpassword.getText();
+        String secq= jtfsecq.getText();
+        String seca= jtfseca.getText();
+        
+        if(validateIt()==true){
+            Staff staff= staffControl.selectRecord(id);
+            staff= new Staff(id, name, ic, gender.charAt(0), address, no, email, position, password, secq, seca);
+            staffControl.addRecord(staff);
+            JOptionPane.showMessageDialog(null, "New Staff Details Added", "Staff Details", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(validateIt()==false){
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+             
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -593,7 +812,6 @@ public class AddingStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -603,7 +821,16 @@ public class AddingStaff extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jtfage;
+    private javax.swing.JLabel jlbladdress;
+    private javax.swing.JLabel jlblemail;
+    private javax.swing.JLabel jlblgender;
+    private javax.swing.JLabel jlblic;
+    private javax.swing.JLabel jlblname;
+    private javax.swing.JLabel jlblno;
+    private javax.swing.JLabel jlblpassword;
+    private javax.swing.JLabel jlblposition;
+    private javax.swing.JLabel jlblseca;
+    private javax.swing.JLabel jlblsecq;
     private javax.swing.JTextField jtfemail;
     private javax.swing.JTextField jtfic;
     private javax.swing.JTextField jtfid;

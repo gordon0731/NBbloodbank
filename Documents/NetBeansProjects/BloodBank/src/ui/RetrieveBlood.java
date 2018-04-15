@@ -16,7 +16,7 @@ import javax.swing.table.*;
 public class RetrieveBlood extends javax.swing.JFrame {
 
     private Connection conn= null;
-    private String host= "jdbc:derby://localhost:1527/FYP1";
+    private String host= "jdbc:derby://localhost:1527/BloodBank";
     private String user= "nbuser";
     private String password= "nbuser";
     

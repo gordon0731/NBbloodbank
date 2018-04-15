@@ -251,7 +251,7 @@ public class UpdatingStaff extends javax.swing.JFrame {
         );
 
         jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-checked-26.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {

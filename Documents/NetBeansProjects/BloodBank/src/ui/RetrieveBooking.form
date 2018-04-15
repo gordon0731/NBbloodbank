@@ -170,7 +170,7 @@
           <Font name="Microsoft Himalaya" size="24" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ui/images/icons8-checked-26.png"/>
+          <Image iconType="3" name="/ui/images/icons8_Checked_26px.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Confirm"/>
       </Properties>
@@ -272,7 +272,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-plus-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Access_24px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Booking"/>
               </Properties>
@@ -318,7 +318,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ui/images/icons8-cancel-26.png"/>
+                  <Image iconType="3" name="/ui/images/icons8_Delete_File_26px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancel Booking"/>
               </Properties>

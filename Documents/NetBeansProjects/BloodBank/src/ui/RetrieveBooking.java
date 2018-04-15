@@ -6,7 +6,7 @@
 package ui;
 
 import ui.fordonor.AddBooking;
-import control.MaintainBookingControl;
+import controller.MaintainBookingControl;
 import da.BookingDA;
 import domain.Booking;
 import java.awt.*;
@@ -44,7 +44,7 @@ public class RetrieveBooking extends javax.swing.JFrame {
             Booking book = null;
             try {
                 book = bookControl.selectRecord(jtfid.getText());
-            } catch (ParseException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(RetrieveBooking.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (book != null) {
@@ -58,8 +58,8 @@ public class RetrieveBooking extends javax.swing.JFrame {
                 jtftime.setText(time1);
                 jtfroom.setText(book.getRoomNo());
                 jtfroom1.setText(book.getRoomNo());
-                jtfdonor.setText(book.getDonorID());
-                jtfstaff.setText(book.getStaffID());
+                //jtfdonor.setText(book.getDonorID());
+                //jtfstaff.setText(book.getStaffID());
                 
             } else {
                 JOptionPane.showMessageDialog(null, "No such programme code.", "RECORD NOT FOUND", JOptionPane.ERROR_MESSAGE);
@@ -119,7 +119,7 @@ public class RetrieveBooking extends javax.swing.JFrame {
         jtfdate.setEditable(false);
 
         jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-checked-26.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
         jButton1.setText("Confirm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +145,7 @@ public class RetrieveBooking extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-plus-26.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Access_24px.png"))); // NOI18N
         jLabel6.setText("Add Booking");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,7 +173,7 @@ public class RetrieveBooking extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-cancel-26.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Delete_File_26px.png"))); // NOI18N
         jLabel7.setText("Cancel Booking");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -383,8 +383,8 @@ public class RetrieveBooking extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        new AddBooking().setVisible(true);
-        this.setVisible(false);
+        //new AddBooking().setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked

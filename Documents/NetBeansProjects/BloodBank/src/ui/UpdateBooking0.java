@@ -5,47 +5,105 @@
  */
 package ui;
 
-import ui.fordonor.CancelBooking;
 import controller.MaintainBookingControl;
-import domain.Booking;
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
-import javax.swing.*;
-import java.util.Date;
+import controller.MaintainBloodControl;
 import controller.MaintainRegister;
 import controller.MaintainStaffControl;
+import da.BookingDA;
 import da.RegisterDA;
 import da.StaffDA;
+import domain.Booking;
 import domain.RegisterDO;
 import domain.Staff;
+import java.sql.*;
+import java.awt.*;
+import javax.swing.*;
+import java.util.ArrayList;
+import javax.swing.table.*;
 /**
  *
  * @author LO
  */
-public class UpdateBooking extends javax.swing.JFrame {
+public class UpdateBooking0 extends javax.swing.JFrame {
 
-    
-    private MaintainBookingControl bookControl;
     private Connection conn;
+    //private PreparedStatement stmt;
     private String host = "jdbc:derby://localhost:1527/BloodBank";
     private String user = "nbuser";
     private String password = "nbuser";
-    private PreparedStatement stmt;
     private RegisterDA donorDA;
     private StaffDA staffDA;
-    
+    private MaintainBookingControl bookControl;
+    private String value;
     /**
      * Creates new form Booking
      */
-    public UpdateBooking(String value) {
-        initComponents();  
+    public UpdateBooking0() {
+        initComponents();
+        bookControl= new MaintainBookingControl();
         donorDA= new RegisterDA();
         staffDA= new StaffDA();
-        
-        bookControl= new MaintainBookingControl();
+        show_booking();
     }
 
+    public ArrayList<Booking> bkList(){
+        ArrayList<Booking> bkList= new ArrayList<>();
+        try{
+            String host = "jdbc:derby://localhost:1527/BloodBank";
+            String user = "nbuser";
+            String password = "nbuser";
+            Connection conn= DriverManager.getConnection(host, user, password);
+            String query1= "SELECT * FROM Booking WHERE BookingStatus='Successful'";
+            Statement st= conn.createStatement();
+            ResultSet rs= st.executeQuery(query1);
+            Booking book;
+            while(rs.next()){
+                RegisterDO d= donorDA.getRecord("donorid");
+                Staff s= staffDA.getRecord("staffid");
+                book= new Booking(rs.getString("bookingid"), rs.getDate("date"), rs.getTime("time"), rs.getString("roomno"), d, s, rs.getString("bookingstatus"));
+                bkList.add(book);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return bkList;
+    }
+    
+    public void show_booking(){
+        ArrayList<Booking> list= bkList();
+        DefaultTableModel model= (DefaultTableModel)jtable.getModel();
+        Object[] row= new Object[6];
+        //Booking book= bookControl.selectRecord("bloodid");
+        for(int i=0; i<list.size(); i++){
+            row[0]= list.get(i).getBookingID();
+            row[1]= list.get(i).getDate();
+            row[2]= list.get(i).getTime();
+            row[3]= list.get(i).getRoomNo();
+            row[4]= list.get(i).getDonorID();
+            row[5]= list.get(i).getStaffID();
+            model.addRow(row);
+        }
+    }
+
+    private void createConnection() {
+        try {
+            conn = DriverManager.getConnection(host, user, password);
+            System.out.println("***TRACE: Connection established.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void shutDown() {
+        if (conn != null)
+            try {
+            conn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,12 +115,6 @@ public class UpdateBooking extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jtfid = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -72,54 +124,16 @@ public class UpdateBooking extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jtftime = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jtfdonor = new javax.swing.JTextField();
-        jtfdate = new com.toedter.calendar.JDateChooser();
-        jtfroom = new javax.swing.JTextField();
-        jtfroom1 = new javax.swing.JTextField();
-        jtfstaff = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtable = new javax.swing.JTable();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(54, 33, 89));
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel1.setText(" Date");
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText(" Time");
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText(" Room");
-
-        jtfid.setEditable(false);
-        jtfid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfidActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
-        jButton1.setText("Confirm");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Reset_24px_2.png"))); // NOI18N
-        jButton2.setText("Reset");
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
         jPanel1.setForeground(new java.awt.Color(54, 33, 89));
@@ -215,7 +229,7 @@ public class UpdateBooking extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Adding Booking");
+        jLabel9.setText("Update Booking Details");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -224,7 +238,7 @@ public class UpdateBooking extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,26 +262,70 @@ public class UpdateBooking extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText(" Staff ID");
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jtftime.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Checked_26px.png"))); // NOI18N
+        jButton1.setText("Confirm");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtftimeActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText(" Booking ID");
+        jButton2.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8_Reset_24px_2.png"))); // NOI18N
+        jButton2.setText("Reset");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText(" Donor ID");
+        jtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jtfroom1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfroom1ActionPerformed(evt);
+            },
+            new String [] {
+                "Booking ID", "Date", "Time", "RoomNo", "DonorID", "StaffID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(jtable);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jButton1)
+                .addGap(113, 113, 113)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,71 +333,18 @@ public class UpdateBooking extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1)
-                        .addGap(113, 113, 113)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 141, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                            .addComponent(jLabel10))
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfid, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(jtftime)
-                            .addComponent(jtfdonor)
-                            .addComponent(jtfdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtfroom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfroom1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfstaff))
-                        .addContainerGap())))
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtftime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfroom1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfdonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfstaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(240, 240, 240)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -360,61 +365,22 @@ public class UpdateBooking extends javax.swing.JFrame {
         //this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void jtftimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtftimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtftimeActionPerformed
-
-    private void jtfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfidActionPerformed
-
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         new Index().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void jtfroom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfroom1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfroom1ActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Booking book = bookControl.selectRecord(jtfid.getText());
-                  java.sql.Date date= new java.sql.Date(jtfdate.getDate().getTime());
-                  RegisterDO d= donorDA.getRecord(jtfdonor.getText());
-                  Staff s= staffDA.getRecord(jtfstaff.getText());
-                  if(book!=null){
-                      book.setDate(date);
-                      //book.setTime(jtftime.getText());
-                      book.setRoomNo(jtfroom+""+ jtfroom1);
-                      book.setDonorID(d);
-                      book.setStaffID(s);
-                     
-                      bookControl.updateRecord(book);
-                      
-                      JOptionPane.showMessageDialog(null,"Update Succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-                  }else{
-                      JOptionPane.showMessageDialog(null,"Record not found","RECORD NOT FOUND",JOptionPane.INFORMATION_MESSAGE);
-                  }
+        //new UpdateBooking().setVisible(true);
+        //this.setVisible(false);
+        int column=0;
+        int row=jtable.getSelectedRow();
+        value= jtable.getModel().getValueAt(row, column).toString();
+        new UpdateBooking(value).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void createConnection() {
-        try {
-            conn = DriverManager.getConnection(host, user, password);
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void shutDown() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -432,14 +398,46 @@ public class UpdateBooking extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateBooking0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateBooking0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateBooking0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateBooking0.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -476,7 +474,7 @@ public class UpdateBooking extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new UpdateBooking().setVisible(true);
+                new UpdateBooking0().setVisible(true);
             }
         });
     }
@@ -485,27 +483,17 @@ public class UpdateBooking extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private com.toedter.calendar.JDateChooser jtfdate;
-    private javax.swing.JTextField jtfdonor;
-    private javax.swing.JTextField jtfid;
-    private javax.swing.JTextField jtfroom;
-    private javax.swing.JTextField jtfroom1;
-    private javax.swing.JTextField jtfstaff;
-    private javax.swing.JTextField jtftime;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtable;
     // End of variables declaration//GEN-END:variables
 }

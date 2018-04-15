@@ -111,9 +111,9 @@ public void deleteRecord(Blood blood){
                 try{
                     
                     stmt = conn.prepareStatement("UPDATE BloodBank SET BloodType = ?, BloodQuantity = ? WHERE BloodID = ?");
-                    stmt.setString(1, blood.getBloodID());
-                    stmt.setString(2, blood.getBloodType());
-                    stmt.setInt(3, blood.getBloodQuantity());
+                    stmt.setString(3, blood.getBloodID());
+                    stmt.setString(1, blood.getBloodType());
+                    stmt.setInt(2, blood.getBloodQuantity());
                     
                     stmt.executeUpdate();
                 }
